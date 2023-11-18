@@ -23,7 +23,7 @@ const labelVariants = cva(
                 missed: "bg-labels-missed text-error-600",
                 rescheduled: "bg-labels-rescheduled text-warning-600",
                 progress: "bg-labels-progress text-information-600 ",
-                primary: "bg-secondary-100 text-secondary-500"
+                default: "bg-secondary-100 text-secondary-500"
             }
         },
         defaultVariants: {
