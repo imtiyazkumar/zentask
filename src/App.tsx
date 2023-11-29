@@ -1,24 +1,12 @@
-/**
- * Project Zentask-Web
- *
- * @author      Imtiyaz Ahmad
- * @copyright   https://github.com/imtiyazkumar
- *
- * @link https://github.com/imtiyazkumar/zentask-web
- *
- */
-
-import React from "react";
-import { RouterProvider } from "react-router-dom";
-import "./App.css";
-import router from "./routes/router";
-
-const App: React.FC = () => {
+const App = () => {
     return (
-        <>
-            <RouterProvider router={router} />
-        </>
-    );
-};
+        <div className=" bg-primary">
+            <h1 className="text-3xl font-bold underline">
+                Hello world!
+            </h1>
+
+            hello world</div>
+    )
+}
 
 export default App;
