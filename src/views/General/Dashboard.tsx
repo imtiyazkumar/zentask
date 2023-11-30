@@ -1,6 +1,8 @@
+import KanbanBoard from "../../components/KanbanBoard";
+
 const Dashboard = () => {
     return (
-        <div>Dashboard</div>
+        <div><KanbanBoard></KanbanBoard></div>
     )
 }
 
