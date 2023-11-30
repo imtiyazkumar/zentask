@@ -1,6 +1,6 @@
 import { cn } from './../utils/helper';
 
-interface DivProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface DivProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 interface SpanProps extends React.HTMLAttributes<HTMLSpanElement> {}
 interface ImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 interface LabelProps extends React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement> {}
