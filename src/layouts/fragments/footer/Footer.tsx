@@ -24,7 +24,8 @@ const Footer: React.FC<FooterProps> = ({ className, variant }) => {
         <Flex className={cn(footerVariants({ variant, className }))}>
             <Span>&copy; {new Date().getFullYear()} Zentask.</Span>
             <Flex className="items-center gap-2 md:gap-8">
-                <a className="text-center cursor-pointer" href="https://www.oumahealth.com/terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
+                <a className="text-center cursor-pointer" href="https://www.linkedin.com/in/imtiyazkumar/" target="_blank" rel="noopener">Developed By</a>
+                <a className="text-center cursor-pointer">Terms of Service</a>
                 <a className="text-center cursor-pointer">Privacy Policy</a>
             </Flex>
         </Flex>

@@ -7,7 +7,7 @@ import { Div, Flex, FlexColumn } from "../components/BaseComponents";
 const AuthLayout: React.FC<ReactChildren> = ({ children }) => {
     return (
         <FlexColumn className="w-full h-fit md:h-full">
-            <Flex className="justify-center w-full py-8 border-b border-border-dark rounded-b-xl">
+            <Flex className="justify-center w-full py-5 border-b border-border-dark rounded-b-xl">
                 <Div className="h-8 font-semibold text-primary-2 text-32 w-28">Zentask</Div>
             </Flex>
             <Flex className="flex-1 py-6 md:py-0">
