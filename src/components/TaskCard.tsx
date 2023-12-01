@@ -10,10 +10,11 @@ interface Props {
     updateTask: (id: Id, content: string) => void;
 }
 
-function TaskCard({ task }: Props) {
-
+const TaskCard = ({ task }: Props) => {
     const { setNodeRef, attributes, listeners, transform, transition, isDragging, } = useSortable({ id: task.id, data: { type: "Task", task } });
     const style = { transition, transform: CSS.Transform.toString(transform) };
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true };
+    const dateStamp = new Date().toLocaleString(undefined, options);
 
     if (isDragging) {
         return (
@@ -29,12 +30,12 @@ function TaskCard({ task }: Props) {
                 <Div className="w-6 h-6 p-1 ml-auto bg-blue-500 rounded-full cursor-pointer hover:flex"><IconMenu size={15} /></Div>
             </Flex>
             <Div className="py-1 text-justify text-14">{task.content}</Div>
-            <Flex className="justify-end gap-2">
-                {/* {<> */}
-                <Img className="rounded-full w-[25px] h-[25px]" src="https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais" />
-                <Img className="rounded-full w-[25px] h-[25px]" src="https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais" />
-                {/* </>
-                } */}
+            <Flex className="items-end gap-2 cursor-default">
+                <Div className="text-10 text-neutral-400">{dateStamp}</Div>
+                <Flex className="gap-2 ml-auto">
+                    <Img className="rounded-full w-[25px] h-[25px]" src="https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais" />
+                    <Img className="rounded-full w-[25px] h-[25px]" src="https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais" />
+                </Flex>
             </Flex>
         </div>
     );
