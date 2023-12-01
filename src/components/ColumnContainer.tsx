@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import TaskCard from "./TaskCard";
 import { Column, Id, Task } from "./types";
 import { Div, Flex } from "./BaseComponents";
+import { IconMenu } from "@tabler/icons-react";
 
 interface Props {
     column: Column;
@@ -77,12 +78,12 @@ function ColumnContainer({
     }
 
     return (
-        <div ref={setNodeRef} style={style} className=" w-[280px] border flex flex-col border-border-dark rounded-xl bg-orange-300 p-3" >
-
-            <Flex  {...attributes} {...listeners} className="cursor-grab">
+        <div ref={setNodeRef} style={style} className=" w-[280px] border flex flex-col border-border-dark rounded-xl p-4 bg-neutral-100" >
+            <Flex {...attributes} {...listeners} className="justify-between cursor-grab">
                 <Div className="font-semibold text-14 text-neutral-700">{column.title}</Div>
+                <Div className="cursor-pointer"><IconMenu /></Div>
             </Flex>
-            <div className="flex flex-col flex-grow gap-4 p-2 overflow-x-hidden overflow-y-auto">
+            <Div className="flex flex-col flex-grow gap-4 pt-3 overflow-x-hidden overflow-y-auto">
                 <SortableContext items={tasksIds}>
                     {tasks.map((task) => (
                         <TaskCard
@@ -93,7 +94,7 @@ function ColumnContainer({
                         />
                     ))}
                 </SortableContext>
-            </div>
+            </Div>
             <button
                 className="flex items-center gap-2 p-4 border-2 rounded-md border-columnBackgroundColor border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"
                 onClick={() => {
