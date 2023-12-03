@@ -5,7 +5,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { useMemo } from "react";
 // import PlusIcon from "../icons/PlusIcon";
 import TaskCard from "./TaskCard";
-import { Column, Id, Task } from "./types";
+import { Column, Id, ITask } from "./types";
 import { Div, Flex } from "./BaseComponents";
 import { IconMenu } from "@tabler/icons-react";
 
@@ -17,7 +17,7 @@ interface Props {
     createTask: (columnId: Id) => void;
     updateTask: (id: Id, content: string) => void;
     deleteTask: (id: Id) => void;
-    tasks: Task[];
+    tasks: ITask[];
 }
 
 function ColumnContainer({
@@ -26,8 +26,8 @@ function ColumnContainer({
     // updateColumn,
     createTask,
     tasks,
-    deleteTask,
-    updateTask,
+    // deleteTask,
+    // updateTask,
 }: Props) {
     // const [editMode, setEditMode] = useState(false);
 
@@ -89,8 +89,8 @@ function ColumnContainer({
                         <TaskCard
                             key={task.id}
                             task={task}
-                            deleteTask={deleteTask}
-                            updateTask={updateTask}
+                        // deleteTask={deleteTask}
+                        // updateTask={updateTask}
                         />
                     ))}
                 </SortableContext>

@@ -5,7 +5,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { cn } from "./helper";
 
 interface DropdownProps extends VariantProps<typeof dropdownVariants> {
-    items?: Array<{
+    items: Array<{
         label?: string;
         onClick?: () => void;
         icon?: React.ReactNode;
@@ -45,12 +45,12 @@ const Dropdown: React.FC<DropdownProps> = ({ variant, items, align = "end", icon
                     align={align}
                     alignOffset={-5}
                     className={cn(dropdownVariants({ variant }), className)}>
-                    {items?.map(i =>
+                    {items?.map(d =>
                         <DropdownMenu.Item
-                            key={i.label}
-                            onClick={i.onClick}
+                            key={d.label}
+                            onClick={d.onClick}
                             className={cn("flex gap-2 items-center text-14 font-medium px-3 py-1.5 first:pt-3 last:pb-3 text-dark select-none outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-neutral-100 cursor-pointer", itemClassName)}>
-                            {i.icon}{i.label}
+                            {d.icon}{d.label}
                         </DropdownMenu.Item>
                     )}
                 </DropdownMenu.Content>

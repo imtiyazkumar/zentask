@@ -10,8 +10,7 @@
  */
 
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { IconChevronDown, IconLoader2, IconLogout } from "@tabler/icons-react";
+import { IconChevronDown } from "@tabler/icons-react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 // // import { Div, Flex, FlexColumn } from "../general/BaseComponents";
@@ -21,9 +20,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 // import { AppRoutes } from "../../routes/routes";
 // import Avatar from "../general/Avatar";
 // import SkeletonLoader from "../loading/SkeletonLoader";
-import { Div, Flex, FlexColumn } from './BaseComponents';
-import { AppRoutes } from "../routes/routes";
-import { useAuth } from "../providers/AuthProvider";
+import { Div, Flex } from './BaseComponents';
 
 interface ProfileDropdownProps {
     name: string;
@@ -31,22 +28,22 @@ interface ProfileDropdownProps {
     image?: string;
 }
 
-const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ name, loading, image }) => {
-    const auth = useAuth();
-    const navigate = useNavigate();
+const ProfileDropdown: React.FC<ProfileDropdownProps> = () => {
+    // const auth = useAuth();
+    // const navigate = useNavigate();
 
-    const { mutate, isPending } = AuthQuery.useMutationSignOut();
-    name = !loading ? name : "";
+    // const { mutate, isPending } = AuthQuery.useMutationSignOut();
+    // name = !loading ? name : "";
 
     const [isOpen, setIsOpen] = React.useState(false);
 
-    const signOut = () => {
-        mutate(_, {
-            onSuccess: () => {
-                auth.clearToken();
-            },
-        });
-    };
+    // const signOut = () => {
+    //     mutate(_, {
+    //         onSuccess: () => {
+    //             auth.clearToken();
+    //         },
+    //     });
+    // };
 
     return (
         <DropdownMenu.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
@@ -65,9 +62,9 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ name, loading, image 
                     align="end"
                     alignOffset={-5}
                     className="bg-white border w-44 rounded-2xl shadow-custom">
-                    <FlexColumn className="outline-none select-none">
+                    {/* <FlexColumn className="outline-none select-none">
                         <Flex className="gap-4 p-3 cursor-pointer hover:rounded-b-none rounded-2xl hover:bg-neutral-300 hover:text-primary-2" onClick={() => { navigate(AppRoutes.Profile); setIsOpen(false); }}>
-                            {/* <Avatar name={name} image={image} avatarClassName="h-5 w-5" fallbackClassName="h-5 w-5" /> */}
+                            <Avatar name={name} image={image} avatarClassName="h-5 w-5" fallbackClassName="h-5 w-5" />
                             <Div className="font-semibold text-16">Profile</Div>
                         </Flex>
                         <Flex className="gap-4 p-3 cursor-pointer hover:rounded-t-none rounded-2xl hover:bg-neutral-300 hover:text-primary-2 group" onClick={signOut}>
@@ -77,7 +74,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ name, loading, image 
                             }
                             <Div className="font-semibold text-16">Logout</Div>
                         </Flex>
-                    </FlexColumn>
+                    </FlexColumn> */}
                 </DropdownMenu.Content>
             </DropdownMenu.Portal>
         </DropdownMenu.Root>
