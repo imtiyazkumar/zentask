@@ -24,7 +24,7 @@ export const Flex: React.FC<DivProps> = ({ className, children, ...props }) => {
     );
 };
 
-export const FlexColumn: React.FC<DivProps> = ({ className, children, ...propvs }) => {
+export const FlexColumn: React.FC<DivProps> = ({ className, children, ...props }) => {
     return (
         <div {...props} className={cn("flex flex-col justify-center", className)}>
             {children}
