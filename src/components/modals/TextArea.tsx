@@ -16,8 +16,8 @@ const TextArea: React.FC<InputTextProps> = ({ error = "", text = "", setText }) 
             <Flex className={cn("border border-border-dark focus-within:border-primary-2 gap-2 p-2 rounded-md items-start", { "border-alerts-error_base": error })}>
                 <textarea
                     placeholder="Enter task content"
-                    className="w-full outline-none text-neutral-800 text-12 placeholder:text-neutral-500 placeholder:font-medium placeholder:text-12"
-                    rows={text.split('\n').length + 1}
+                    className="w-full outline-none text-neutral-800 text-14 placeholder:text-neutral-500 placeholder:font-medium placeholder:text-12"
+                    rows={text.split('\n').length > 2 ? (text.split('\n').length + 2) : 4}
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                 ></textarea>
