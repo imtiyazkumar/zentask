@@ -33,8 +33,8 @@ export interface IOrganization {
     key: string;
     title: string;
     manager: string;
-    columns: Array<Column>;
-    tasks: Array<ITask>;
-    members: Array<IUser>;
-    labels: Array<ILabel>
+    columns: Array<string>;
+    tasks: Array<string>;
+    members: Array<string>;
+    labels: Array<string>
 }
