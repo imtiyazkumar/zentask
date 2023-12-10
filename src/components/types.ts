@@ -5,18 +5,36 @@ export type Column = {
     title: string;
 };
 
-export interface IProfile {
-    id: string;
-    name: string;
-    email: string;
-    organizationId: string
-}
-
 export interface ITask {
     id: Id;
     content: string;
     created_at?: string;
     columnId: Id;
     labels?: Array<string>;
-    members?: Array<IProfile>
+    members?: Array<string>
+}
+
+export interface IUser {
+    key: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    organizationId: string;
+    profileImage: string;
+}
+
+export interface ILabel {
+    key: string;
+    title: string;
+    color: string;
+}
+
+export interface IOrganization {
+    key: string;
+    title: string;
+    manager: string;
+    columns: Array<Column>;
+    tasks: Array<ITask>;
+    members: Array<IUser>;
+    labels: Array<ILabel>
 }
