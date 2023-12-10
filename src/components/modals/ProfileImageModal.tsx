@@ -1,7 +1,7 @@
 import React from "react";
 import { IconX, IconZoomIn, IconZoomOut } from "@tabler/icons-react";
 import * as Dialog from "@radix-ui/react-dialog";
-import AvatarEditor from "react-avatar-editor";
+// import AvatarEditor from "react-avatar-editor";
 import { Div, Flex, Span } from "../BaseComponents";
 import Button from "../Button";
 
@@ -17,9 +17,8 @@ interface ProfileImageModalProps {
     imageRef: React.MutableRefObject<HTMLInputElement | null>
 }
 
-const ProfileImageModal: React.FC<ProfileImageModalProps> = ({ isModalOpen, setIsModalOpen, selectedImage, onCrop, uploading, imageRef }) => {
-    const editorRef = React.useRef<AvatarEditor>(null);
-
+const ProfileImageModal: React.FC<ProfileImageModalProps> = function ({ isModalOpen, setIsModalOpen, onCrop, uploading, imageRef }) {
+    // const editorRef = React.useRef<AvatarEditor>(null);
     const [scale, setScale] = React.useState(1);
 
     const resetFileInput = () => {
@@ -31,10 +30,8 @@ const ProfileImageModal: React.FC<ProfileImageModalProps> = ({ isModalOpen, setI
     };
 
     const handleSaveCroppedImage = () => {
-        if (!editorRef.current) return;
-
-        editorRef.current.getImageScaledToCanvas().toBlob(onCrop);
-
+        // if (!editorRef.current) return;
+        // editorRef.current.getImageScaledToCanvas().toBlob(onCrop);
         setScale(1);
         resetFileInput();
     };
@@ -80,19 +77,19 @@ const ProfileImageModal: React.FC<ProfileImageModalProps> = ({ isModalOpen, setI
                     </Dialog.Title>
                     <Flex className="relative flex items-center justify-center h-full">
                         <Div style={{ position: "relative", width: "100%", height: "100%" }} onWheel={handleWheel}>
-                            {selectedImage &&
-                                <AvatarEditor
-                                    ref={editorRef}
-                                    image={selectedImage}
-                                    width={300}
-                                    height={300}
-                                    borderRadius={1000}
-                                    color={[0, 0, 0, 0.5]}
-                                    scale={scale}
-                                    rotate={0}
-                                    style={{ width: "100%", height: "100%" }}
-                                />
-                            }
+                            {/* {selectedImage &&
+                <AvatarEditor
+                    ref={editorRef}
+                    image={selectedImage}
+                    width={300}
+                    height={300}
+                    borderRadius={1000}
+                    color={[0, 0, 0, 0.5]}
+                    scale={scale}
+                    rotate={0}
+                    style={{ width: "100%", height: "100%" }}
+                />
+            } */}
                         </Div>
                         <Flex className="absolute gap-2 bottom-3 right-3">
                             <IconZoomIn className="p-1.5 rounded cursor-pointer bg-white text-text hover:bg-neutral-200 active:bg-neutral-400" size={32} onClick={zoomIn} />

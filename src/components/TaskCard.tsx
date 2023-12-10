@@ -5,8 +5,27 @@ import { ITask } from "./types";
 import { Div, Flex, Img } from "./BaseComponents";
 import { IconMenu } from "@tabler/icons-react";
 import Dropdown from "./Dropdown";
-import CardEditorModal from './modals/CardEditorModal';
+import CardEditorModal, { Labels } from './modals/CardEditorModal';
 import ConfirmationModal from './modals/ConfirmationModal';
+
+const initialMembers = [
+    { firstName: "imtiyaz", key: "key1", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+    { firstName: "imtiyaz", key: "key2", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+    { firstName: "imtiyaz", key: "key3", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+    { firstName: "imtiyaz", key: "key4", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+    { firstName: "imtiyaz", key: "key5", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+    { firstName: "imtiyaz", key: "key6.", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+    { firstName: "imtiyaz", key: "key7", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+    { firstName: "imtiyaz", key: "key8", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+]
+
+const initialLabels = [
+    { color: Labels.Bug, key: "key1", title: "Bug" },
+    { color: Labels.Urgent, key: "key2", title: "Urgent" },
+    { color: Labels.Feature, key: "key3", title: "Feature" },
+    { color: Labels.Warning, key: "key4", title: "Warning" },
+    { color: Labels.Study, key: "key5", title: "Study" },
+]
 
 interface ICardProps {
     task: ITask;
@@ -17,7 +36,7 @@ interface ICardProps {
 const TaskCard = ({ task }: ICardProps) => {
     const [isEditModalOpen, setEditIsModalOpen] = React.useState(false);
     const [isDeleteModalOpen, setDeleteIsModalOpen] = React.useState(false);
-
+    const [content, setContent] = React.useState(task.content)
     const { setNodeRef, attributes, listeners, transform, transition, isDragging, } = useSortable({ id: task.id, data: { type: "Task", task } });
     const style = { transition, transform: CSS.Transform.toString(transform) };
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true };
@@ -36,11 +55,11 @@ const TaskCard = ({ task }: ICardProps) => {
                 <Div className="bg-green-600 h-[10px] w-12 rounded-md"></Div>
                 <Div className="w-6 h-6 p-1 ml-auto cursor-pointer">
                     <Dropdown icon={<IconMenu size={15} />} align="end" items={[{ label: "Edit Card", onClick: () => { setEditIsModalOpen(!isEditModalOpen) }, icon: <IconMenu size={15} /> }, { label: "Delete Card", onClick: () => { setDeleteIsModalOpen(!isDeleteModalOpen) }, icon: <IconMenu size={15} /> }]} />
-                    <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} />
+                    <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} content={task.content} setContent={setContent} members={initialMembers} labels={initialLabels} onSave={() => {}} />
                     <ConfirmationModal isModalOpen={isDeleteModalOpen} setIsModalOpen={setDeleteIsModalOpen} onCancel={() => console.log("delete")} onAction={() => console.log("delete")} />
                 </Div>
             </Flex>
-            <Div className="py-1 text-justify text-14">{task.content}</Div>
+            <Div className="py-1 text-justify text-14">{content}</Div>
             <Flex className="items-end gap-2 cursor-default">
                 <Div className="text-10 text-neutral-400">{dateStamp}</Div>
                 <Flex className="gap-2 ml-auto">
