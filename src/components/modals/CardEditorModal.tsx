@@ -4,8 +4,8 @@ import { Div, Flex, FlexColumn, Span } from "../BaseComponents";
 import { IconX } from "@tabler/icons-react";
 import TextArea from "./TextArea";
 // import * as Accordion from "@radix-ui/react-accordion";
-import Checkbox from "../Checkbox";
-import Dropdown from './../Dropdown';
+// import Checkbox from "../Checkbox";
+import CheckBoxDropdown from "../CheckBoxDropdown";
 
 interface UserInfoModalProps {
     title?: string;
@@ -16,6 +16,7 @@ interface UserInfoModalProps {
 
 const CardEditorModal: React.FC<UserInfoModalProps> = ({ isModalOpen, setIsModalOpen }) => {
     const [text, setText] = React.useState("");
+    const [isOpen, setIsOpen] = React.useState(false);
 
     return (
         <Dialog.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -37,10 +38,15 @@ const CardEditorModal: React.FC<UserInfoModalProps> = ({ isModalOpen, setIsModal
                             <Div className="h-[50px]"></Div>
                         </FlexColumn>
                         <FlexColumn>
-                            <Dropdown items={[
-                                { item: <Checkbox label="Imtiyaz Ahmad" checked={true} onChange={() => {}} className="font-semibold text-12 text-neutral-900" />, action: () => {} },
-
-                                { item: <Checkbox label="Imtiyaz Ahmad" checked={true} onChange={() => {}} className="font-semibold text-12 text-neutral-900" />, action: () => {} },
+                            <CheckBoxDropdown isOpen={isOpen} setIsOpen={setIsOpen} label="Members" icon={<IconX size={14} />} members={[
+                                { firstName: "imtiyaz", key: "key1", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+                                { firstName: "imtiyaz", key: "key1", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+                                { firstName: "imtiyaz", key: "key1h", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+                                { firstName: "imtiyaz", key: "keyh1", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+                                { firstName: "imtiyaz", key: "key1uh", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+                                { firstName: "imtiyaz", key: "keyh1.", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+                                { firstName: "imtiyaz", key: "key1kkh", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
+                                { firstName: "imtiyaz", key: "keyh1hh", lastName: "hjhh", organizationId: "ghhh", profileImage: "" },
                             ]} />
                         </FlexColumn>
                         {/* <FlexColumn>

@@ -35,7 +35,7 @@ const TaskCard = ({ task }: ICardProps) => {
                 <Div className="bg-red-500 h-[10px] w-12 rounded-md"></Div>
                 <Div className="bg-green-600 h-[10px] w-12 rounded-md"></Div>
                 <Div className="w-6 h-6 p-1 ml-auto cursor-pointer">
-                    <Dropdown icon={<IconMenu size={15} />} align="end" items={[{ item: "Edit Card", action: () => { setEditIsModalOpen(!isEditModalOpen) } }, { item: "Delete Card", action: () => { setDeleteIsModalOpen(!isDeleteModalOpen) } }]} />
+                    <Dropdown icon={<IconMenu size={15} />} align="end" items={[{ label: "Edit Card", onClick: () => { setEditIsModalOpen(!isEditModalOpen) }, icon: <IconMenu size={15} /> }, { label: "Delete Card", onClick: () => { setDeleteIsModalOpen(!isDeleteModalOpen) }, icon: <IconMenu size={15} /> }]} />
                     <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} />
                     <ConfirmationModal isModalOpen={isDeleteModalOpen} setIsModalOpen={setDeleteIsModalOpen} onCancel={() => console.log("delete")} onAction={() => console.log("delete")} />
                 </Div>

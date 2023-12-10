@@ -1,12 +1,15 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { IconChevronDown } from "@tabler/icons-react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { cn } from "./helper";
-import { Flex } from "./BaseComponents";
 
 interface DropdownProps extends VariantProps<typeof dropdownVariants> {
-    items: Array<{ item: ReactNode, action: () => void }>;
+    items: Array<{
+        label?: string;
+        onClick?: () => void;
+        icon?: React.ReactNode;
+    }>;
     align?: "start" | "center" | "end";
     icon?: React.ReactNode;
     className?: string;
@@ -42,16 +45,14 @@ const Dropdown: React.FC<DropdownProps> = ({ variant, items, align = "end", icon
                     align={align}
                     alignOffset={-5}
                     className={cn(dropdownVariants({ variant }), className)}>
-
-                    <Flex className={cn("flex flex-col gap-2.5 items-center select-none p-2", itemClassName)}>
-                        {items?.map((d, index) =>
-                            <DropdownMenu.Item key={index} className="cursor-pointer" onClick={d.action}>
-
-                                {d.item}
-                            </DropdownMenu.Item>
-                        )}
-                    </Flex>
-
+                    {items?.map(d =>
+                        <DropdownMenu.Item
+                            key={d.label}
+                            onClick={d.onClick}
+                            className={cn("flex gap-2 items-center text-14 font-medium px-3 py-1.5 first:pt-3 last:pb-3 text-dark select-none outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-neutral-100 cursor-pointer", itemClassName)}>
+                            {d.icon}{d.label}
+                        </DropdownMenu.Item>
+                    )}
                 </DropdownMenu.Content>
             </DropdownMenu.Portal>
         </DropdownMenu.Root>
