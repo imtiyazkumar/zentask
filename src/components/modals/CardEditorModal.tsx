@@ -3,36 +3,30 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Div, Flex, FlexColumn, Span } from "../BaseComponents";
 import { IconHeart, IconX } from "@tabler/icons-react";
 import TextArea from "./TextArea";
-import CheckBoxDropdown, { ILabel, IUser } from "../CheckBoxDropdown";
+import CheckBoxDropdown from "../CheckBoxDropdown";
 import Button from "../Button";
+import { DropdownType, ITask } from "../types";
 
-interface UserInfoModalProps {
-    content: string;
-    setContent: React.Dispatch<React.SetStateAction<string>>;
-    members?: Array<IUser>;
-    labels?: Array<ILabel>;
-    onSave: () => void
+interface CardEditorProps {
+    task: ITask;
+    setTask: React.Dispatch<React.SetStateAction<ITask>>;
     isModalOpen: boolean;
     setIsModalOpen: (isModalOpen: boolean) => void;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export enum Labels {
-    Bug = "cyan-950",
-    Feature = "purple-600",
-    Urgent = "red-600",
-    Warning = "yellow-600",
-    Study = "green-600"
-}
 
-const CardEditorModal: React.FC<UserInfoModalProps> = ({ content, setContent, members, labels, onSave, isModalOpen, setIsModalOpen }) => {
-    onSave = () => {
-        setContent(text);
+
+const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen, setIsModalOpen }) => {
+    const onSave = () => {
+        setTask((prevTask) => {
+            return { ...prevTask, content: text };
+        });
         setIsModalOpen(false)
     }
     const [isOpen, setIsOpen] = React.useState(false);
 
-    const [text, setText] = React.useState(content);
+    const [text, setText] = React.useState(task.content);
     const [isOpenLabel, setIsOpenLabel] = React.useState(false);
 
     return (
@@ -54,8 +48,8 @@ const CardEditorModal: React.FC<UserInfoModalProps> = ({ content, setContent, me
                             </Div>
                         </FlexColumn>
                         <FlexColumn className="self-start gap-4 pt-10">
-                            <CheckBoxDropdown isOpen={isOpen} setIsOpen={setIsOpen} label="Members" icon={<IconHeart size={14} />} members={members} />
-                            <CheckBoxDropdown isOpen={isOpenLabel} setIsOpen={setIsOpenLabel} label="Labels" icon={<IconHeart size={14} />} labels={labels} />
+                            <CheckBoxDropdown isOpen={isOpen} setIsOpen={setIsOpen} label="Members" icon={<IconHeart size={14} />} members={task.members} type={DropdownType.Members} />
+                            <CheckBoxDropdown isOpen={isOpenLabel} setIsOpen={setIsOpenLabel} label="Labels" icon={<IconHeart size={14} />} labels={task.labels} type={DropdownType.Labels} />
                             <Button variant="primary_filled" onClick={onSave}>Save</Button>
                         </FlexColumn>
                     </Flex>

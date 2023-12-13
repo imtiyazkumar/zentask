@@ -1,15 +1,15 @@
 export type Id = string | number;
 
-export type Column = {
-    id: Id;
+export type IContainer = {
+    key: Id;
     title: string;
 };
 
 export interface ITask {
-    id: Id;
+    key: Id;
     content: string;
     created_at?: string;
-    columnId: Id;
+    containerId: Id;
     labels?: Array<string>;
     members?: Array<string>
 }
@@ -26,15 +26,19 @@ export interface IUser {
 export interface ILabel {
     key: string;
     title: string;
-    color: string;
 }
 
 export interface IOrganization {
     key: string;
     title: string;
-    manager: string;
-    columns: Array<string>;
+    manager: string; //Author
+    containers: Array<string>;
     tasks: Array<string>;
     members: Array<string>;
     labels: Array<string>
+}
+
+export enum DropdownType {
+    Members = "members",
+    Labels = "labels"
 }
