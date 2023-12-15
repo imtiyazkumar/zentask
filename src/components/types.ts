@@ -6,7 +6,7 @@ export type IContainer = {
 };
 
 export interface ITask {
-    key: Id;
+    key?: Id;
     content: string;
     created_at?: string;
     containerId: Id;
@@ -33,7 +33,7 @@ export interface IOrganization {
     title: string;
     manager: string; //Author
     containers: Array<string>;
-    tasks: Array<string>;
+    tasks: Array<Id>;
     members: Array<string>;
     labels: Array<string>
 }

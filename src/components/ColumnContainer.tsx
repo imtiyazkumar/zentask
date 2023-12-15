@@ -6,13 +6,17 @@ import { IContainer, IOrganization, ITask } from "./types";
 import { Div, Flex } from "./BaseComponents";
 import { IconMenu } from "@tabler/icons-react";
 import { defaultContainers, defaultTasks } from "./DefaultValues";
+import CardEditorModal from "./modals/CardEditorModal";
 
 interface ContainerProps {
     containerKey: string;
+    setOrganization: React.Dispatch<React.SetStateAction<IOrganization>>
     organization: IOrganization;
 }
 
-const ColumnContainer: React.FC<ContainerProps> = ({ containerKey, organization }) => {
+const ColumnContainer: React.FC<ContainerProps> = ({ containerKey, organization, setOrganization }) => {
+    const [isEditModalOpen, setEditIsModalOpen] = React.useState(false);
+    const [task, setTask] = React.useState<ITask>({ content: "", labels: [], members: [], containerId: containerKey })
     const currentContainer = defaultContainers.find(container => container.key === containerKey);
     const OrganizationTasks: ITask[] = defaultTasks.filter(task => organization.tasks.includes(task.key as string));
     const myTasks: ITask[] = OrganizationTasks.filter(task => task.containerId === containerKey);
@@ -29,18 +33,20 @@ const ColumnContainer: React.FC<ContainerProps> = ({ containerKey, organization 
             <Div className="flex flex-col flex-grow gap-4 pt-3 overflow-x-hidden overflow-y-auto">
                 <SortableContext items={organization.tasks}>
                     {myTasks.map((task) => (
-                        <TaskCard key={task.key} currentTask={task} />
+                        <TaskCard key={task.key} currentTask={task} setOrganization={setOrganization} />
                     ))}
                 </SortableContext>
             </Div>
             <button
                 className="flex items-center gap-2 p-4 border-2 rounded-md border-columnBackgroundColor border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"
                 onClick={() => {
-                    setContainer(container)
+                    setEditIsModalOpen(true)
                 }}
             >
                 Add task
             </button>
+            <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} task={task} setTask={setTask} setOrganization={setOrganization} isediting={true} />
+
         </div>
     );
 }

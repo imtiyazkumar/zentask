@@ -70,6 +70,7 @@ const Dashboard: React.FC = () => {
                                     key={col}
                                     containerKey={col}
                                     organization={organization}
+                                    setOrganization={setOrganization}
                                 />
                             ))}
                         </SortableContext>

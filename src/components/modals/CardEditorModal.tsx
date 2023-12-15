@@ -5,20 +5,27 @@ import { IconHeart, IconX } from "@tabler/icons-react";
 import TextArea from "./TextArea";
 import CheckBoxDropdown from "../CheckBoxDropdown";
 import Button from "../Button";
-import { DropdownType, ITask } from "../types";
+import { DropdownType, IOrganization, ITask } from "../types";
 
 interface CardEditorProps {
     task: ITask;
+    setOrganization: React.Dispatch<React.SetStateAction<IOrganization>>
     setTask: React.Dispatch<React.SetStateAction<ITask>>;
     isModalOpen: boolean;
+    isediting?: boolean;
     setIsModalOpen: (isModalOpen: boolean) => void;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
 
 
-const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen, setIsModalOpen }) => {
+const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen, setIsModalOpen, setOrganization, isediting }) => {
     const onSave = () => {
+        if (isediting) {
+            console.log("adding")
+            setOrganization((prevOrg) => { return { ...prevOrg, tasks: [...prevOrg.tasks, task.key!] } })
+        }
+
         setTask((prevTask) => {
             return { ...prevTask, content: text };
         });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { ITask } from "./types";
+import { IOrganization, ITask } from "./types";
 import { Div, Flex, Img } from "./BaseComponents";
 import { IconMenu } from "@tabler/icons-react";
 import Dropdown from "./Dropdown";
@@ -9,11 +9,11 @@ import CardEditorModal from './modals/CardEditorModal';
 import ConfirmationModal from './modals/ConfirmationModal';
 
 
-const TaskCard = ({ currentTask }: { currentTask: ITask }) => {
+const TaskCard = ({ currentTask, setOrganization }: { currentTask: ITask, setOrganization: React.Dispatch<React.SetStateAction<IOrganization>> }) => {
     const [isEditModalOpen, setEditIsModalOpen] = React.useState(false);
     const [isDeleteModalOpen, setDeleteIsModalOpen] = React.useState(false);
     const [task, setTask] = React.useState<ITask>(currentTask || { content: "", labels: [], members: [], containerId: [] })
-    const { setNodeRef, attributes, listeners, transform, transition, isDragging, } = useSortable({ id: task.key, data: { type: "Task", task } });
+    const { setNodeRef, attributes, listeners, transform, transition, isDragging, } = useSortable({ id: task.key!, data: { type: "Task", task } });
     const style = { transition, transform: CSS.Transform.toString(transform) };
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true };
     const dateStamp = new Date().toLocaleString(undefined, options);
@@ -32,7 +32,7 @@ const TaskCard = ({ currentTask }: { currentTask: ITask }) => {
                 <Div className="bg-green-600 h-[10px] w-12 rounded-md"></Div>
                 <Div className="w-6 h-6 p-1 ml-auto cursor-pointer">
                     <Dropdown icon={<IconMenu size={15} />} align="end" items={[{ label: "Edit Card", onClick: () => { setEditIsModalOpen(!isEditModalOpen) }, icon: <IconMenu size={15} /> }, { label: "Delete Card", onClick: () => { setDeleteIsModalOpen(!isDeleteModalOpen) }, icon: <IconMenu size={15} /> }]} />
-                    <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} task={task} setTask={setTask} />
+                    <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} task={task} setTask={setTask} setOrganization={setOrganization} />
                     <ConfirmationModal isModalOpen={isDeleteModalOpen} setIsModalOpen={setDeleteIsModalOpen} onCancel={() => console.log("delete")} onAction={() => console.log("delete")} />
                 </Div>
             </Flex>
