@@ -1,5 +1,4 @@
 import React from "react";
-import { DndContext } from '@dnd-kit/core';
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import TaskCard from "./TaskCard";
@@ -28,13 +27,11 @@ const ColumnContainer: React.FC<ContainerProps> = ({ containerKey, organization 
                 <Div className="cursor-pointer"><IconMenu /></Div>
             </Flex>
             <Div className="flex flex-col flex-grow gap-4 pt-3 overflow-x-hidden overflow-y-auto">
-                <DndContext>
-                    <SortableContext items={organization.tasks}>
-                        {myTasks.map((task) => (
-                            <TaskCard key={task.key} currentTask={task} />
-                        ))}
-                    </SortableContext>
-                </DndContext>
+                <SortableContext items={organization.tasks}>
+                    {myTasks.map((task) => (
+                        <TaskCard key={task.key} currentTask={task} />
+                    ))}
+                </SortableContext>
             </Div>
             <button
                 className="flex items-center gap-2 p-4 border-2 rounded-md border-columnBackgroundColor border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"

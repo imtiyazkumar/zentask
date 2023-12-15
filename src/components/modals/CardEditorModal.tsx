@@ -48,8 +48,8 @@ const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen
                             </Div>
                         </FlexColumn>
                         <FlexColumn className="self-start gap-4 pt-10">
-                            <CheckBoxDropdown isOpen={isOpen} setIsOpen={setIsOpen} label="Members" icon={<IconHeart size={14} />} members={task.members} type={DropdownType.Members} />
-                            <CheckBoxDropdown isOpen={isOpenLabel} setIsOpen={setIsOpenLabel} label="Labels" icon={<IconHeart size={14} />} labels={task.labels} type={DropdownType.Labels} />
+                            <CheckBoxDropdown isOpen={isOpen} setIsOpen={setIsOpen} label="Members" icon={<IconHeart size={14} />} members={task.members} type={DropdownType.Members} setTask={setTask} />
+                            <CheckBoxDropdown isOpen={isOpenLabel} setIsOpen={setIsOpenLabel} label="Labels" icon={<IconHeart size={14} />} labels={task.labels} type={DropdownType.Labels} setTask={setTask} />
                             <Button variant="primary_filled" onClick={onSave}>Save</Button>
                         </FlexColumn>
                     </Flex>

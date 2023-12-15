@@ -3,8 +3,8 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Div, Flex } from "./BaseComponents";
 import Checkbox from "./Checkbox";
 import { IconX } from "@tabler/icons-react";
-import { allLabels, allMembers } from "./DefaultValues";
-import { DropdownType } from "./types";
+import { Labels, allLabels, allMembers } from "./DefaultValues";
+import { DropdownType, ITask } from "./types";
 
 export interface IUser {
     key: string;
@@ -21,39 +21,60 @@ export interface ILabel {
 
 interface DropdownProps {
     type: DropdownType;
-    members?: Array<IUser>;
-    labels?: Array<ILabel>;
+    members?: Array<string>;
+    labels?: Array<string>;
     align?: "start" | "center" | "end";
     icon?: ReactNode;
     label: string;
     isOpen: boolean;
+    setTask: React.Dispatch<React.SetStateAction<ITask>>
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const addMember = (memberId: string) => {
-    console.log(memberId)
+const CheckBoxDropdown: React.FC<DropdownProps> = ({ type, label, members, setTask, labels, icon, isOpen, setIsOpen, ...props }) => {
 
-}
+    const addMember = (memberId: string) => {
+        setTask((prev) => {
+            if (prev && prev.members) {
+                const isMemberAlreadyAdded = prev.members.includes(memberId);
+                if (isMemberAlreadyAdded) {
+                    return { ...prev, members: prev.members.filter((id) => id !== memberId) };
+                }
+                else {
+                    return { ...prev, members: [...prev.members, memberId] };
+                }
+            }
+            return prev;
+        });
+    };
 
-const addLabel = (labelId: string) => {
-    console.log(labelId)
 
-}
-
-const getColour = (label: string): string => {
-    switch (label) {
-        // case Labels.Bug: return "cyan-950";
-        // case Labels.Feature: return "purple-600";
-        // case Labels.Urgent: return "red-600";
-        // case Labels.Warning: return "yellow-600";
-        // case Labels.Study: return "green-600";
-        default: console.log("Default case", label); return "green-600";
+    const addLabel = (labelId: string) => {
+        setTask((prev) => {
+            if (prev && prev.labels) {
+                const isLabelAlreadyAdded = prev.labels.includes(labelId);
+                if (isLabelAlreadyAdded) {
+                    return { ...prev, labels: prev.labels.filter((id) => id !== labelId) };
+                }
+                else {
+                    return { ...prev, labels: [...prev.labels, labelId] };
+                }
+            }
+            return prev;
+        });
     }
-};
 
+    const getColour = (label: string): string => {
+        switch (label) {
+            case Labels.Bug: return "cyan-950";
+            case Labels.Feature: return "purple-600";
+            case Labels.Urgent: return "red-600";
+            case Labels.Warning: return "yellow-600";
+            case Labels.Study: return "green-600";
+            default: return "green-600";
+        }
+    };
 
-const CheckBoxDropdown: React.FC<DropdownProps> = ({ type, label, members, labels, icon, isOpen, setIsOpen, ...props }) => {
-    console.log(labels, members)
     return (
         <DropdownMenu.Root open={isOpen}>
             <DropdownMenu.Trigger onClick={() => setIsOpen(true)}>
@@ -72,14 +93,14 @@ const CheckBoxDropdown: React.FC<DropdownProps> = ({ type, label, members, label
                             <Flex className="gap-3 p-2 rounded-sm cursor-pointer hover:bg-slate-400">
                                 <Div className="w-8 h-8 bg-orange-300 rounded-full"></Div>
                                 <Div className="font-semibold capitalize text-16 text-neutral-700">{d.firstName} {d.firstName}</Div>
-                                <Checkbox checked={true} onChange={() => addMember(d.key)} />
+                                <Checkbox checked={!!members?.includes(d.key)} onChange={() => addMember(d.key)} />
                             </Flex>
                         </DropdownMenu.Item>
                     )}</>}
                     {type === DropdownType.Labels && <>{allLabels?.map(d =>
                         <DropdownMenu.Item key={d.key} onClick={() => addLabel(d.key)}>
                             <Flex className="gap-2 p-1 m-2 rounded-sm cursor-pointer hover:bg-slate-400">
-                                <Checkbox checked={true} onChange={() => addMember(d.key)} />
+                                <Checkbox checked={!!labels?.includes(d.key)} onChange={() => addLabel(d.key)} />
                                 <Flex className={`w-[150px] rounded bg-${getColour(d.title)} px-2 text-14 select-none text-white`}>{getColour(d.title)}</Flex>
                             </Flex>
                         </DropdownMenu.Item>

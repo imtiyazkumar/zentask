@@ -23,7 +23,7 @@ const TaskCard = ({ currentTask }: { currentTask: ITask }) => {
             <div ref={setNodeRef} style={style} className=" p-2 h-[120px] min-h-max items-center flex rounded-md border border-primary cursor-grab" />
         );
     }
-    console.log("isModalOpen", isEditModalOpen)
+
 
     return (
         <div ref={setNodeRef} style={style}{...attributes}{...listeners} className="p-2 bg-orange-200 rounded-md cursor-grab" >
