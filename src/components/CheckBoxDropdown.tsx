@@ -3,7 +3,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Div, Flex } from "./BaseComponents";
 import Checkbox from "./Checkbox";
 import { IconX } from "@tabler/icons-react";
-import { Labels, allLabels, allMembers } from "./DefaultValues";
+import { Labels, getLabels, getMembers } from "./DefaultValues";
 import { DropdownType, ITask } from "./types";
 
 export interface IUser {
@@ -21,8 +21,8 @@ export interface ILabel {
 
 interface DropdownProps {
     type: DropdownType;
-    members?: Array<string>;
-    labels?: Array<string>;
+    task: ITask;
+    orgKey: string;
     align?: "start" | "center" | "end";
     icon?: ReactNode;
     label: string;
@@ -31,7 +31,9 @@ interface DropdownProps {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CheckBoxDropdown: React.FC<DropdownProps> = ({ type, label, members, setTask, labels, icon, isOpen, setIsOpen, ...props }) => {
+const CheckBoxDropdown: React.FC<DropdownProps> = ({ task, type, label, setTask, orgKey, icon, isOpen, setIsOpen, ...props }) => {
+    const labels = getLabels(orgKey);
+    const members = getMembers(orgKey)
 
     const addMember = (memberId: string) => {
         setTask((prev) => {
@@ -88,19 +90,19 @@ const CheckBoxDropdown: React.FC<DropdownProps> = ({ type, label, members, setTa
                         <Div className="ml-12">{type === DropdownType.Members ? "Members" : "Labels"}</Div>
                         <Flex className="justify-end w-10 h-6 cursor-pointer" onClick={() => setIsOpen(false)}> <IconX /></Flex>
                     </Flex>
-                    {type === DropdownType.Members && <>{allMembers?.map(d =>
+                    {type === DropdownType.Members && <>{members?.map(d =>
                         <DropdownMenu.Item key={d.key} onClick={() => addMember(d.key)}>
                             <Flex className="gap-3 p-2 rounded-sm cursor-pointer hover:bg-slate-400">
                                 <Div className="w-8 h-8 bg-orange-300 rounded-full"></Div>
                                 <Div className="font-semibold capitalize text-16 text-neutral-700">{d.firstName} {d.firstName}</Div>
-                                <Checkbox checked={!!members?.includes(d.key)} onChange={() => addMember(d.key)} />
+                                <Checkbox checked={!!task.members!.includes(d.key)} onChange={() => addMember(d.key)} />
                             </Flex>
                         </DropdownMenu.Item>
                     )}</>}
-                    {type === DropdownType.Labels && <>{allLabels?.map(d =>
+                    {type === DropdownType.Labels && <>{labels?.map(d =>
                         <DropdownMenu.Item key={d.key} onClick={() => addLabel(d.key)}>
                             <Flex className="gap-2 p-1 m-2 rounded-sm cursor-pointer hover:bg-slate-400">
-                                <Checkbox checked={!!labels?.includes(d.key)} onChange={() => addLabel(d.key)} />
+                                <Checkbox checked={!!task.labels!.includes(d.key)} onChange={() => addLabel(d.key)} />
                                 <Flex className={`w-[150px] rounded ${getColour(d.title)} px-2 text-14 select-none text-white`}>{getColour(d.title)}</Flex>
                             </Flex>
                         </DropdownMenu.Item>

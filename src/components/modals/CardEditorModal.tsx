@@ -10,6 +10,7 @@ import { defaultTasks, orgTasks } from "../DefaultValues";
 
 interface CardEditorProps {
     task: ITask;
+    orgKey: string
     setTask: React.Dispatch<React.SetStateAction<ITask>>;
     isModalOpen: boolean;
     isAdding?: boolean;
@@ -19,7 +20,7 @@ interface CardEditorProps {
 // eslint-disable-next-line react-refresh/only-export-components
 
 
-const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen, setIsModalOpen, isAdding }) => {
+const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen, setIsModalOpen, orgKey, isAdding }) => {
     const onSave = () => {
         if (isAdding) {
             defaultTasks.push(task);
@@ -54,12 +55,11 @@ const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen
                             </Div>
                         </FlexColumn>
                         <FlexColumn className="self-start gap-4 pt-10">
-                            <CheckBoxDropdown isOpen={isOpen} setIsOpen={setIsOpen} label="Members" icon={<IconHeart size={14} />} members={task.members} type={DropdownType.Members} setTask={setTask} />
-                            <CheckBoxDropdown isOpen={isOpenLabel} setIsOpen={setIsOpenLabel} label="Labels" icon={<IconHeart size={14} />} labels={task.labels} type={DropdownType.Labels} setTask={setTask} />
+                            <CheckBoxDropdown task={task} isOpen={isOpen} setIsOpen={setIsOpen} label="Members" icon={<IconHeart size={14} />} type={DropdownType.Members} setTask={setTask} orgKey={orgKey} />
+                            <CheckBoxDropdown task={task} isOpen={isOpenLabel} setIsOpen={setIsOpenLabel} label="Labels" icon={<IconHeart size={14} />} type={DropdownType.Labels} setTask={setTask} orgKey={orgKey} />
                             <Button variant="primary_filled" onClick={onSave}>Save</Button>
                         </FlexColumn>
                     </Flex>
-
                 </Dialog.Content>
             </Dialog.Portal>
         </Dialog.Root>

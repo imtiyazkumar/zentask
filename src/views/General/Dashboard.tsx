@@ -1,16 +1,18 @@
 import React from "react";
 import { DndContext, DragEndEvent, DragOverEvent, DragStartEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext } from "@dnd-kit/sortable";
-import { organization } from "../../components/DefaultValues";
 import { Div, Flex } from "../../components/BaseComponents";
 import ColumnContainer from "../../components/ColumnContainer";
 import Button from "../../components/Button";
+import { IOrganization } from "../../components/types";
+import { getContainers } from "../../components/DefaultValues";
 
 
 const Dashboard: React.FC = () => {
 
     const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 10 } }));
-    const [Organization, setOrganization] = React.useState(organization)
+    const [Organization, setOrganization] = React.useState<IOrganization>({ key: "org1", title: "Zantask", manager: "key9" })
+    const containers = getContainers(Organization.key)
 
     const swapStrings = (array: string[], string1: string, string2: string): string[] => {
         const index1 = array.indexOf(string1);
@@ -64,13 +66,12 @@ const Dashboard: React.FC = () => {
             <DndContext sensors={sensors} onDragStart={onDragStart} onDragEnd={onDragEnd} onDragOver={onDragOver}>
                 <Div className="flex gap-4 m-auto">
                     <Div className="flex gap-4">
-                        <SortableContext items={Organization.containers}>
-                            {Organization.containers.map((col) => (
+                        <SortableContext items={Object.keys(containers)}>
+                            {containers.map((col) => (
                                 <ColumnContainer
-                                    key={col}
-                                    containerKey={col}
-                                    organization={organization}
-                                />
+                                    key={col.key}
+                                    container={col}
+                                    orgKey={Organization.key} />
                             ))}
                         </SortableContext>
                     </Div>

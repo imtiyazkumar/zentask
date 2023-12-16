@@ -1,4 +1,4 @@
-import { IContainer, ILabel, IOrganization, ITask, IUser, Id, } from "./types";
+import { IContainer, ILabel, ITask, IUser, Id, } from "./types";
 
 export enum Labels {
     Bug = "bug",
@@ -8,13 +8,28 @@ export enum Labels {
     Study = "study"
 }
 
-export const allMembers: IUser[] = [
+export const defaultMembers: IUser[] = [
     {
         firstName: "John",
         lastName: "Doe",
         email: "john.doe@example.com",
         key: "key1",
-        organizationId: "org1",
+        orgId: "org1",
+        profileImage: "https://example.com/profile1.jpg"
+    },
+    {
+        firstName: "Imtiyaz",
+        lastName: "Ahmad",
+        email: "john.doe@example.com",
+        key: "key9",
+        orgId: "org1",
+        profileImage: "https://example.com/profile1.jpg"
+    }, {
+        firstName: "Junaid",
+        lastName: "Khan",
+        email: "john.doe@example.com",
+        key: "key10",
+        orgId: "org1",
         profileImage: "https://example.com/profile1.jpg"
     },
     {
@@ -22,7 +37,7 @@ export const allMembers: IUser[] = [
         lastName: "Smith",
         email: "jane.smith@example.com",
         key: "key2",
-        organizationId: "org2",
+        orgId: "org2",
         profileImage: "https://example.com/profile2.jpg"
     },
     {
@@ -30,7 +45,7 @@ export const allMembers: IUser[] = [
         lastName: "Johnson",
         email: "alice.johnson@example.com",
         key: "key3",
-        organizationId: "org3",
+        orgId: "org3",
         profileImage: "https://example.com/profile3.jpg"
     },
     {
@@ -38,7 +53,7 @@ export const allMembers: IUser[] = [
         lastName: "Johnson",
         email: "bob.johnson@example.com",
         key: "key4",
-        organizationId: "org4",
+        orgId: "org4",
         profileImage: "https://example.com/profile4.jpg"
     },
     {
@@ -46,7 +61,7 @@ export const allMembers: IUser[] = [
         lastName: "Williams",
         email: "eva.williams@example.com",
         key: "key5",
-        organizationId: "org5",
+        orgId: "org5",
         profileImage: "https://example.com/profile5.jpg"
     },
     {
@@ -54,7 +69,7 @@ export const allMembers: IUser[] = [
         lastName: "Anderson",
         email: "chris.anderson@example.com",
         key: "key6",
-        organizationId: "org6",
+        orgId: "org6",
         profileImage: "https://example.com/profile6.jpg"
     },
     {
@@ -62,7 +77,7 @@ export const allMembers: IUser[] = [
         lastName: "Taylor",
         email: "sara.taylor@example.com",
         key: "key7",
-        organizationId: "org7",
+        orgId: "org7",
         profileImage: "https://example.com/profile7.jpg"
     },
     {
@@ -70,19 +85,18 @@ export const allMembers: IUser[] = [
         lastName: "Brown",
         email: "michael.brown@example.com",
         key: "key8",
-        organizationId: "org8",
+        orgId: "org8",
         profileImage: "https://example.com/profile8.jpg"
     },
 ];
 
-
-export const allLabels: ILabel[] = [
-    { title: Labels.Bug, key: "label1" },
-    { title: Labels.Urgent, key: "label2" },
-    { title: Labels.Feature, key: "label3" },
-    { title: Labels.Warning, key: "label4" },
-    { title: Labels.Study, key: "label15" },
-]
+export const defaultLabels: ILabel[] = [
+    { title: Labels.Bug, key: "label1", backGround: "", orgId: "Org1" },
+    { title: Labels.Urgent, key: "label2", backGround: "", orgId: "Org1" },
+    { title: Labels.Feature, key: "label3", backGround: "", orgId: "Org1" },
+    { title: Labels.Warning, key: "label4", backGround: "", orgId: "Org1" },
+    { title: Labels.Study, key: "label15", backGround: "", orgId: "Org1" },
+];
 
 export const defaultTasks: ITask[] = [
     {
@@ -92,6 +106,7 @@ export const defaultTasks: ITask[] = [
         containerId: "container1",
         labels: ["label1", "label2"],
         members: ["key1", "key2"],
+        serialNumber: 1
     },
     {
         key: "task2",
@@ -100,6 +115,7 @@ export const defaultTasks: ITask[] = [
         containerId: "container2",
         labels: ["label2", "label3"],
         members: ["key2", "key3"],
+        serialNumber: 2
     },
     {
         key: "task3",
@@ -108,6 +124,7 @@ export const defaultTasks: ITask[] = [
         containerId: "container3",
         labels: ["label4", "label5"],
         members: ["key4", "key3"],
+        serialNumber: 3
     },
     {
         key: "task4",
@@ -116,37 +133,87 @@ export const defaultTasks: ITask[] = [
         containerId: "container3",
         labels: ["label4", "label5"],
         members: ["key4", "key3"],
+        serialNumber: 4
+    },
+    {
+        key: "task5",
+        content: "these are contents of task with task key 4",
+        created_at: new Date().toString(),
+        containerId: "container3",
+        labels: ["label4", "label5"],
+        members: ["key4", "key3"],
+        serialNumber: 4
     }
 ];
-
-
 
 export const defaultContainers: IContainer[] = [
     {
         key: "container1",
         title: "Todo",
+        orgId: "org1",
+        serialNumber: 1
     },
     {
         key: "container2",
         title: "Work in progress",
+        orgId: "org1",
+        serialNumber: 2
     },
     {
         key: "container3",
         title: "Done",
+        orgId: "org1",
+        serialNumber: 3
     },
 ];
+
+export const getTasks = (containerId: Id) => {
+    const container3Tasks = defaultTasks
+        .filter(task => task.containerId === containerId)
+        .sort((task1, task2) => task2.serialNumber - task1.serialNumber)
+    return container3Tasks;
+};
+
+export const getContainers = (orgId: string) => {
+    const orgContainers = defaultContainers
+        .filter(container => container.orgId === orgId)
+        .sort((task1, task2) => task2.serialNumber - task1.serialNumber)
+    return orgContainers;
+};
+
+export const getLabels = (orgId: string) => {
+    const orgLabels = defaultLabels
+        .filter(label => label.orgId === orgId)
+    return orgLabels;
+};
+
+export const getMembers = (orgId: string) => {
+    const orgLabels = defaultMembers
+        .filter(member => member.orgId === orgId)
+    return orgLabels;
+};
+
+export const getLabelsByKeys = (keysToFilter: Array<string>) => {
+    return defaultLabels.filter(label => keysToFilter.includes(label.key));
+};
+
+export const getMembersByKeys = (keysToFilter: Array<string>) => {
+    return defaultMembers.filter(member => keysToFilter.includes(member.key));
+};
+
+
+
+console.log("tasks by function", getTasks("container3"));
+
+console.log("labels by function", getLabels("org1"));
+
+console.log("containers by function", getContainers("org1"));
+
+
+console.log("members by function", getMembers("org1"));
+
 
 export const orgTasks: Array<Id> = ["task1", "task2", "task3", "task4"]
 export const orgContainers = ["container1", "container2", "container3"]
 export const orgLabels = ["label1", "label2", "label3"]
 export const orgMembers = ["key1", "key2", "key3"]
-
-export const organization: IOrganization = {
-    key: "Org1",
-    title: "My Organization",
-    manager: "Imtiyaz",
-    containers: orgContainers,
-    labels: orgLabels,
-    tasks: orgTasks,
-    members: orgMembers,
-}

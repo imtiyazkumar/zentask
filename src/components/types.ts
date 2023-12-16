@@ -3,6 +3,8 @@ export type Id = string | number | string;
 export type IContainer = {
     key: Id;
     title: string;
+    orgId: string,
+    serialNumber: number;
 };
 
 export interface ITask {
@@ -11,7 +13,8 @@ export interface ITask {
     created_at?: string;
     containerId: Id;
     labels?: Array<string>;
-    members?: Array<string>
+    members?: Array<string>;
+    serialNumber: number;
 }
 
 export interface IUser {
@@ -19,23 +22,21 @@ export interface IUser {
     firstName: string;
     lastName: string;
     email: string;
-    organizationId: string;
+    orgId: string;
     profileImage: string;
 }
 
 export interface ILabel {
     key: string;
+    backGround: string;
     title: string;
+    orgId: string;
 }
 
 export interface IOrganization {
     key: string;
     title: string;
     manager: string; //Author
-    containers: Array<string>;
-    tasks: Array<Id>;
-    members: Array<string>;
-    labels: Array<string>
 }
 
 export enum DropdownType {
