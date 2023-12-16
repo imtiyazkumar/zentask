@@ -66,12 +66,12 @@ const CheckBoxDropdown: React.FC<DropdownProps> = ({ type, label, members, setTa
 
     const getColour = (label: string): string => {
         switch (label) {
-            case Labels.Bug: return "cyan-950";
-            case Labels.Feature: return "purple-600";
-            case Labels.Urgent: return "red-600";
-            case Labels.Warning: return "yellow-600";
-            case Labels.Study: return "green-600";
-            default: return "green-600";
+            case Labels.Bug: return "bg-cyan-950";
+            case Labels.Feature: return "bg-purple-600";
+            case Labels.Urgent: return "bg-red-600";
+            case Labels.Warning: return "bg-yellow-600";
+            case Labels.Study: return "bg-green-600";
+            default: return "bg-green-600";
         }
     };
 
@@ -101,7 +101,7 @@ const CheckBoxDropdown: React.FC<DropdownProps> = ({ type, label, members, setTa
                         <DropdownMenu.Item key={d.key} onClick={() => addLabel(d.key)}>
                             <Flex className="gap-2 p-1 m-2 rounded-sm cursor-pointer hover:bg-slate-400">
                                 <Checkbox checked={!!labels?.includes(d.key)} onChange={() => addLabel(d.key)} />
-                                <Flex className={`w-[150px] rounded bg-${getColour(d.title)} px-2 text-14 select-none text-white`}>{getColour(d.title)}</Flex>
+                                <Flex className={`w-[150px] rounded ${getColour(d.title)} px-2 text-14 select-none text-white`}>{getColour(d.title)}</Flex>
                             </Flex>
                         </DropdownMenu.Item>
                     )}</>}

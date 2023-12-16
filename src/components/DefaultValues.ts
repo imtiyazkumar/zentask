@@ -1,4 +1,4 @@
-import { IContainer, ILabel, IOrganization, ITask, IUser, } from "./types";
+import { IContainer, ILabel, IOrganization, ITask, IUser, Id, } from "./types";
 
 export enum Labels {
     Bug = "bug",
@@ -136,12 +136,17 @@ export const defaultContainers: IContainer[] = [
     },
 ];
 
+export const orgTasks: Array<Id> = ["task1", "task2", "task3", "task4"]
+export const orgContainers = ["container1", "container2", "container3"]
+export const orgLabels = ["label1", "label2", "label3"]
+export const orgMembers = ["key1", "key2", "key3"]
+
 export const organization: IOrganization = {
     key: "Org1",
     title: "My Organization",
     manager: "Imtiyaz",
-    containers: ["container1", "container2", "container3"],
-    labels: ["label1", "label2", "label3"],
-    tasks: ["task1", "task2", "task3", "task4"],
-    members: ["key1", "key2", "key3"],
+    containers: orgContainers,
+    labels: orgLabels,
+    tasks: orgTasks,
+    members: orgMembers,
 }

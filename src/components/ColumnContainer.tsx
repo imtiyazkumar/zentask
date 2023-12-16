@@ -5,18 +5,17 @@ import TaskCard from "./TaskCard";
 import { IContainer, IOrganization, ITask } from "./types";
 import { Div, Flex } from "./BaseComponents";
 import { IconMenu } from "@tabler/icons-react";
-import { defaultContainers, defaultTasks } from "./DefaultValues";
+import { defaultContainers, defaultTasks, orgTasks } from "./DefaultValues";
 import CardEditorModal from "./modals/CardEditorModal";
 
 interface ContainerProps {
     containerKey: string;
-    setOrganization: React.Dispatch<React.SetStateAction<IOrganization>>
     organization: IOrganization;
 }
 
-const ColumnContainer: React.FC<ContainerProps> = ({ containerKey, organization, setOrganization }) => {
+const ColumnContainer: React.FC<ContainerProps> = ({ containerKey, organization }) => {
     const [isEditModalOpen, setEditIsModalOpen] = React.useState(false);
-    const [task, setTask] = React.useState<ITask>({ content: "", labels: [], members: [], containerId: containerKey })
+    const [task, setTask] = React.useState<ITask>({ content: "", labels: [], members: [], containerId: containerKey, key: orgTasks.length + 1 })
     const currentContainer = defaultContainers.find(container => container.key === containerKey);
     const OrganizationTasks: ITask[] = defaultTasks.filter(task => organization.tasks.includes(task.key as string));
     const myTasks: ITask[] = OrganizationTasks.filter(task => task.containerId === containerKey);
@@ -33,7 +32,7 @@ const ColumnContainer: React.FC<ContainerProps> = ({ containerKey, organization,
             <Div className="flex flex-col flex-grow gap-4 pt-3 overflow-x-hidden overflow-y-auto">
                 <SortableContext items={organization.tasks}>
                     {myTasks.map((task) => (
-                        <TaskCard key={task.key} currentTask={task} setOrganization={setOrganization} />
+                        <TaskCard key={task.key} currentTask={task} />
                     ))}
                 </SortableContext>
             </Div>
@@ -45,7 +44,7 @@ const ColumnContainer: React.FC<ContainerProps> = ({ containerKey, organization,
             >
                 Add task
             </button>
-            <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} task={task} setTask={setTask} setOrganization={setOrganization} isediting={true} />
+            <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} task={task} setTask={setTask} isAdding={true} />
 
         </div>
     );
