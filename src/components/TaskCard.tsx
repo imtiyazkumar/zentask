@@ -7,13 +7,13 @@ import { IconMenu } from "@tabler/icons-react";
 import Dropdown from "./Dropdown";
 import CardEditorModal from './modals/CardEditorModal';
 import ConfirmationModal from './modals/ConfirmationModal';
-import { getLabelsByKeys, getMembersByKeys } from './DefaultValues';
+// import { getLabelsByKeys, getMembersByKeys } from './DefaultValues';
 
 
 const TaskCard = ({ currentTask, containerKey, orgKey }: { currentTask: ITask, containerKey: Id, orgKey: string; }) => {
     const [task, setTask] = React.useState<ITask>(currentTask || { content: "", labels: [], members: [], containerId: containerKey, serialNumber: 12, created_at: new Date().toString() })
-    const labels = getLabelsByKeys(task.labels || []);
-    const members = getMembersByKeys(task.members || [])
+    // const labels = getLabelsByKeys(task.labels || []);
+    // const members = getMembersByKeys(task.members || [])
     const [isEditModalOpen, setEditIsModalOpen] = React.useState(false);
     const [isDeleteModalOpen, setDeleteIsModalOpen] = React.useState(false);
     const { setNodeRef, attributes, listeners, transform, transition, isDragging, } = useSortable({ id: task.key!, data: { type: "Task", task } });
@@ -26,8 +26,6 @@ const TaskCard = ({ currentTask, containerKey, orgKey }: { currentTask: ITask, c
             <div ref={setNodeRef} style={style} className=" p-2 h-[120px] min-h-max items-center flex rounded-md border border-primary cursor-grab" />
         );
     }
-
-    console.log(labels, members)
 
     return (
         <div ref={setNodeRef} style={style}{...attributes}{...listeners} className="p-2 bg-orange-200 rounded-md cursor-grab" >

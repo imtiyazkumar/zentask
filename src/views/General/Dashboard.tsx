@@ -23,7 +23,6 @@ const Dashboard: React.FC = () => {
     };
 
     const onDragStart = (event: DragStartEvent) => {
-        console.log(event)
         // if (event.active.data.current?.type === "Container") {
         //     setActiveColumn(event.active.data.current.container);
         //     return;

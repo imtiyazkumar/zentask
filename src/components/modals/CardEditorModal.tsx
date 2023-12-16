@@ -6,7 +6,7 @@ import TextArea from "./TextArea";
 import CheckBoxDropdown from "../CheckBoxDropdown";
 import Button from "../Button";
 import { DropdownType, ITask } from "../types";
-import { defaultTasks, orgTasks } from "../DefaultValues";
+import { defaultTasks } from "../DefaultValues";
 
 interface CardEditorProps {
     task: ITask;
@@ -17,14 +17,15 @@ interface CardEditorProps {
     setIsModalOpen: (isModalOpen: boolean) => void;
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
-
-
 const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen, setIsModalOpen, orgKey, isAdding }) => {
+
     const onSave = () => {
         if (isAdding) {
+            console.log({ task })
             defaultTasks.push(task);
-            orgTasks.push(task.key!)
+            setTask((prevTask) => {
+                return { ...prevTask, content: "", members: [], labels: [] };
+            });
         }
         setTask((prevTask) => {
             return { ...prevTask, content: text };

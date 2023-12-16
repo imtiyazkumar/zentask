@@ -1,11 +1,10 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { IRouteState } from "../App.d";
 import { AppRoutes } from "../routes/routes";
-import { useAuth } from "../providers/AuthProvider";
+// import { useAuth } from "../providers/AuthProvider";
 const test = true
 export const AuthenticatedRoutes = () => {
-    const auth = useAuth();
-    console.log("auth", auth?.token)
+    // const auth = useAuth();
     const location = useLocation();
 
     if (!test) return <Navigate to={AppRoutes.SignIn} state={{ prev: location }} replace />;
@@ -14,9 +13,8 @@ export const AuthenticatedRoutes = () => {
 };
 
 export const UnAuthenticatedRoutes = () => {
-    const auth = useAuth();
+    // const auth = useAuth();
     const location = useLocation();
-    console.log("auth", auth?.token)
 
     const from = (location.state as IRouteState)?.prev?.pathname || null;
 

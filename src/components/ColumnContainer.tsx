@@ -5,7 +5,7 @@ import TaskCard from "./TaskCard";
 import { IContainer, ITask } from "./types";
 import { Div, Flex } from "./BaseComponents";
 import { IconMenu } from "@tabler/icons-react";
-import { getTasks, orgTasks } from "./DefaultValues";
+import { getTasks } from "./DefaultValues";
 import CardEditorModal from "./modals/CardEditorModal";
 
 interface ContainerProps {
@@ -15,7 +15,7 @@ interface ContainerProps {
 
 const ColumnContainer: React.FC<ContainerProps> = ({ container, orgKey }) => {
     const [isEditModalOpen, setEditIsModalOpen] = React.useState(false);
-    const [task, setTask] = React.useState<ITask>({ content: "", labels: [], members: [], containerId: container.key, serialNumber: 6, created_at: new Date().toString(), key: orgTasks.length + 1 })
+    const [task, setTask] = React.useState<ITask>({ content: "", labels: [], members: [], containerId: container.key, serialNumber: 6, created_at: new Date().toString(), key: "" })
     const myTasks: ITask[] = getTasks(container.key);
 
     const [currentContainer, setCurrentContainer] = React.useState<IContainer>({ key: container?.key || "", title: container?.title || "", orgId: orgKey, serialNumber: 8 })

@@ -91,11 +91,11 @@ export const defaultMembers: IUser[] = [
 ];
 
 export const defaultLabels: ILabel[] = [
-    { title: Labels.Bug, key: "label1", backGround: "", orgId: "Org1" },
-    { title: Labels.Urgent, key: "label2", backGround: "", orgId: "Org1" },
-    { title: Labels.Feature, key: "label3", backGround: "", orgId: "Org1" },
-    { title: Labels.Warning, key: "label4", backGround: "", orgId: "Org1" },
-    { title: Labels.Study, key: "label15", backGround: "", orgId: "Org1" },
+    { title: Labels.Bug, key: "label1", backGround: "", orgId: "org1" },
+    { title: Labels.Urgent, key: "label2", backGround: "", orgId: "org1" },
+    { title: Labels.Feature, key: "label3", backGround: "", orgId: "org1" },
+    { title: Labels.Warning, key: "label4", backGround: "", orgId: "org1" },
+    { title: Labels.Study, key: "label15", backGround: "", orgId: "org1" },
 ];
 
 export const defaultTasks: ITask[] = [
@@ -200,20 +200,3 @@ export const getLabelsByKeys = (keysToFilter: Array<string>) => {
 export const getMembersByKeys = (keysToFilter: Array<string>) => {
     return defaultMembers.filter(member => keysToFilter.includes(member.key));
 };
-
-
-
-console.log("tasks by function", getTasks("container3"));
-
-console.log("labels by function", getLabels("org1"));
-
-console.log("containers by function", getContainers("org1"));
-
-
-console.log("members by function", getMembers("org1"));
-
-
-export const orgTasks: Array<Id> = ["task1", "task2", "task3", "task4"]
-export const orgContainers = ["container1", "container2", "container3"]
-export const orgLabels = ["label1", "label2", "label3"]
-export const orgMembers = ["key1", "key2", "key3"]
