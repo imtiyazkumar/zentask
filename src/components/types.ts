@@ -8,6 +8,7 @@ export type IContainer = {
 };
 
 export interface ITask {
+    orgId: string,
     key: Id;
     content: string;
     created_at?: string;

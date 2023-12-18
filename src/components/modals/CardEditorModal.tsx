@@ -15,14 +15,16 @@ interface CardEditorProps {
     isModalOpen: boolean;
     isAdding?: boolean;
     setIsModalOpen: (isModalOpen: boolean) => void;
+    update?: boolean;
+    setUpdate?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen, setIsModalOpen, orgKey, isAdding }) => {
+const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen, setIsModalOpen, orgKey, isAdding, setUpdate, update }) => {
 
     const onSave = () => {
         if (isAdding) {
-            console.log({ task })
-            defaultTasks.push(task);
+            defaultTasks.push({ ...task, content: text });
+            setUpdate!(!update);
             setTask((prevTask) => {
                 return { ...prevTask, content: "", members: [], labels: [] };
             });

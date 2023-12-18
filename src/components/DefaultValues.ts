@@ -101,30 +101,33 @@ export const defaultLabels: ILabel[] = [
 export const defaultTasks: ITask[] = [
     {
         key: "task1",
-        content: "Implement user authentication and authorization",
+        content: "Implement user authentication and authorization 1",
         created_at: new Date().toString(),
         containerId: "container1",
         labels: ["label1", "label2"],
         members: ["key1", "key2"],
-        serialNumber: 1
+        serialNumber: 1,
+        orgId: "org1"
     },
     {
         key: "task2",
-        content: "Create API endpoints for data retrieval",
+        content: "Create API endpoints for data retrieval 2",
         created_at: new Date().toString(),
         containerId: "container2",
         labels: ["label2", "label3"],
         members: ["key2", "key3"],
-        serialNumber: 2
+        serialNumber: 2,
+        orgId: "org1"
     },
     {
         key: "task3",
-        content: "Optimize database queries for better performance",
+        content: "Optimize database queries for better performance 3",
         created_at: new Date().toString(),
         containerId: "container3",
         labels: ["label4", "label5"],
         members: ["key4", "key3"],
-        serialNumber: 3
+        serialNumber: 3,
+        orgId: "org1"
     },
     {
         key: "task4",
@@ -133,16 +136,18 @@ export const defaultTasks: ITask[] = [
         containerId: "container3",
         labels: ["label4", "label5"],
         members: ["key4", "key3"],
-        serialNumber: 4
+        serialNumber: 4,
+        orgId: "org1"
     },
     {
         key: "task5",
-        content: "these are contents of task with task key 4",
+        content: "these are contents of task with task key 5",
         created_at: new Date().toString(),
         containerId: "container3",
         labels: ["label4", "label5"],
         members: ["key4", "key3"],
-        serialNumber: 4
+        serialNumber: 5,
+        orgId: "org1"
     }
 ];
 
@@ -200,3 +205,7 @@ export const getLabelsByKeys = (keysToFilter: Array<string>) => {
 export const getMembersByKeys = (keysToFilter: Array<string>) => {
     return defaultMembers.filter(member => keysToFilter.includes(member.key));
 };
+
+export const getTaskKey = () => {
+    return defaultTasks.length + 100;
+}
