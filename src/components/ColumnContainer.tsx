@@ -35,7 +35,7 @@ const ColumnContainer: React.FC<ContainerProps> = ({ orgTasks, container, orgKey
                 <Div className="font-semibold text-14 text-neutral-700">{currentContainer.title}{currentContainer.serialNumber}</Div>
                 <Div className="cursor-pointer"><IconMenu /></Div>
             </Flex>
-            <Div className="flex flex-col flex-grow gap-4 pt-3 overflow-x-hidden overflow-y-auto">
+            <Div className="flex flex-col flex-grow gap-4 pt-3">
                 <SortableContext items={taskKeys}>
                     {myTasks.map((task) => (
                         <TaskCard key={task.key} currentTask={task} containerKey={currentContainer.key} orgKey={orgKey} />
