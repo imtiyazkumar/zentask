@@ -17,6 +17,7 @@ const ColumnContainer: React.FC<ContainerProps> = ({ container, orgKey }) => {
     const [isEditModalOpen, setEditIsModalOpen] = React.useState(false);
     const [task, setTask] = React.useState<ITask>({ content: "", labels: [], members: [], containerId: container.key, serialNumber: 6, created_at: new Date().toString(), key: "" })
     const myTasks: ITask[] = getTasks(container.key);
+    const taskKeys = myTasks.map(task => task.key);
 
     const [currentContainer, setCurrentContainer] = React.useState<IContainer>({ key: container?.key || "", title: container?.title || "", orgId: orgKey, serialNumber: 8 })
     const { setNodeRef, attributes, listeners, transform, isDragging } = useSortable({ id: container.key, data: { type: "Container", container } });
@@ -29,7 +30,7 @@ const ColumnContainer: React.FC<ContainerProps> = ({ container, orgKey }) => {
                 <Div className="cursor-pointer"><IconMenu /></Div>
             </Flex>
             <Div className="flex flex-col flex-grow gap-4 pt-3 overflow-x-hidden overflow-y-auto">
-                <SortableContext items={Object.keys(myTasks)}>
+                <SortableContext items={taskKeys}>
                     {myTasks.map((task) => (
                         <TaskCard key={task.key} currentTask={task} containerKey={currentContainer.key} orgKey={orgKey} />
                     ))}

@@ -8,7 +8,7 @@ export type IContainer = {
 };
 
 export interface ITask {
-    key?: Id;
+    key: Id;
     content: string;
     created_at?: string;
     containerId: Id;
