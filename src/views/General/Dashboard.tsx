@@ -11,15 +11,14 @@ const Dashboard: React.FC = () => {
 
     const [update, setUpdate] = React.useState(false);
     const [Organization, setOrganization] = React.useState<IOrganization>({ key: "org1", title: "Zantask", manager: "key9" })
-    const [container, setContainer] = React.useState<IContainer>({ key: getContainerKey(), orgId: Organization.key, serialNumber: getContainerSerial(), title: "" })
     const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 10 } }));
     const [containers, setContainers] = React.useState(defaultContainers.filter(container => container.orgId === Organization.key).sort((container1, container2) => container2.serialNumber - container1.serialNumber))
     const [tasks, setTasks] = React.useState(defaultTasks.filter(task => task.orgId === Organization.key).sort((task1, task2) => task2.serialNumber - task1.serialNumber))
+    const container: IContainer = ({ key: getContainerKey(), orgId: Organization.key, serialNumber: getContainerSerial(), title: "" });
 
     React.useEffect(() => {
         setContainers(defaultContainers
-            .filter(container => container.orgId === Organization.key)
-            .sort((task1, task2) => task2.serialNumber - task1.serialNumber))
+            .filter(container => container.orgId === Organization.key))
         setTasks(defaultTasks
             .filter(task => task.orgId === Organization.key)
             .sort((task1, task2) => task2.serialNumber - task1.serialNumber))
@@ -64,6 +63,7 @@ const Dashboard: React.FC = () => {
         setUpdate(!update)
 
     }
+
     const onDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
         if (!over) return;
@@ -84,13 +84,12 @@ const Dashboard: React.FC = () => {
         }
         setUpdate(!update)
     };
-    const addContainer = () => {
-        // if (!container.title.length) { alert("Title can't be empty"); return; }
 
+    const addContainer = () => {
         defaultContainers.push(container);
         setUpdate((u) => !u);
-
     };
+
     return (
         <DndContext sensors={sensors} onDragStart={onDragStart} onDragEnd={onDragEnd} onDragOver={onDragOver}>
             <Flex className="items-start gap-4 p-6">

@@ -18,7 +18,7 @@ const Input: React.FC<InputTextProps> = ({ label = "", error = "", type, require
                 <Span className="select-none text-neutral-900">{label}</Span>
                 {required && <Span className="text-red-500">*</Span>}
             </Flex>
-            <Flex className={cn("flex border border-border-dark focus-within:border-primary-2 gap-2 p-2 rounded-md", { "border-alerts-error_base": error })}>
+            <Flex className={cn("flex border bg-white border-border-dark focus-within:border-primary-2 gap-2 p-2 rounded-md", { "border-alerts-error_base": error })}>
                 <input {...props} type={type === "password" ? (isPasswordVisible ? "text" : "password") : type} className="flex-1 w-full font-medium text-neutral-700 focus:outline-none text-14 placeholder-neutral-600" />
                 {type === "password" &&
                     <Span className="cursor-pointer" onClick={() => setIsPasswordVisible(v => !v)}>
