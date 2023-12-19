@@ -1,3 +1,12 @@
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Div, Flex, FlexColumn, Span } from "../BaseComponents";
@@ -34,7 +43,7 @@ const CardEditorModal: React.FC<CardEditorProps> = ({ task, isModalOpen, setIsMo
             const activeIndex = task ? defaultTasks.findIndex(Task => Task.key === thisTask.key) : defaultTasks.length + 1;
             defaultTasks[activeIndex] = (thisTask);
             setUpdate((u) => !u);
-            setThisTask({ containerId: containerId, content: "", key: getTaskKey(), orgId: orgKey, serialNumber: getTaskSerial(), created_at: new Date().toString(), labels: [], members: [] });
+            // setThisTask({ containerId: containerId, content: "", key: getTaskKey(), orgId: orgKey, serialNumber: getTaskSerial(), created_at: new Date().toString(), labels: [], members: [] });
         }
         setIsModalOpen(false)
     };

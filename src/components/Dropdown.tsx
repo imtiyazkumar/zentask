@@ -1,3 +1,12 @@
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import React from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { IconChevronDown } from "@tabler/icons-react";

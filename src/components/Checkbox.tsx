@@ -1,3 +1,12 @@
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import React from "react";
 import { IconSquare, IconSquareCheckFilled } from "@tabler/icons-react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";

@@ -1,3 +1,12 @@
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import { IContainer, ILabel, ITask, IUser, Id, } from "./types";
 
 export enum Labels {
@@ -15,7 +24,7 @@ export const defaultMembers: IUser[] = [
         email: "john.doe@example.com",
         key: "key1",
         orgId: "org1",
-        profileImage: "https://example.com/profile1.jpg"
+        profileImage: "https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais"
     },
     {
         firstName: "Imtiyaz",
@@ -23,14 +32,14 @@ export const defaultMembers: IUser[] = [
         email: "john.doe@example.com",
         key: "key9",
         orgId: "org1",
-        profileImage: "https://example.com/profile1.jpg"
+        profileImage: "https://media.licdn.com/dms/image/D4D03AQFUTu_HflUpoA/profile-displayphoto-shrink_200_200/0/1694194830742?e=1708560000&v=beta&t=gXANxvCHb5Tt02SjK4loBcGygrmCBDZIVWfJu2MQHKg"
     }, {
         firstName: "Junaid",
         lastName: "Khan",
         email: "john.doe@example.com",
         key: "key10",
         orgId: "org1",
-        profileImage: "https://example.com/profile1.jpg"
+        profileImage: "https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais"
     },
     {
         firstName: "Jane",
@@ -38,7 +47,7 @@ export const defaultMembers: IUser[] = [
         email: "jane.smith@example.com",
         key: "key2",
         orgId: "org2",
-        profileImage: "https://example.com/profile2.jpg"
+        profileImage: "https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais"
     },
     {
         firstName: "Alice",
@@ -46,7 +55,7 @@ export const defaultMembers: IUser[] = [
         email: "alice.johnson@example.com",
         key: "key3",
         orgId: "org3",
-        profileImage: "https://example.com/profile3.jpg"
+        profileImage: "https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais"
     },
     {
         firstName: "Bob",
@@ -54,7 +63,7 @@ export const defaultMembers: IUser[] = [
         email: "bob.johnson@example.com",
         key: "key4",
         orgId: "org4",
-        profileImage: "https://example.com/profile4.jpg"
+        profileImage: "https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais"
     },
     {
         firstName: "Eva",
@@ -62,15 +71,15 @@ export const defaultMembers: IUser[] = [
         email: "eva.williams@example.com",
         key: "key5",
         orgId: "org5",
-        profileImage: "https://example.com/profile5.jpg"
+        profileImage: "https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais"
     },
     {
         firstName: "Chris",
         lastName: "Anderson",
         email: "chris.anderson@example.com",
         key: "key6",
-        orgId: "org6",
-        profileImage: "https://example.com/profile6.jpg"
+        orgId: "org1",
+        profileImage: "https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais"
     },
     {
         firstName: "Sara",
@@ -78,28 +87,17 @@ export const defaultMembers: IUser[] = [
         email: "sara.taylor@example.com",
         key: "key7",
         orgId: "org7",
-        profileImage: "https://example.com/profile7.jpg"
+        profileImage: "https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais"
     },
     {
         firstName: "Michael",
         lastName: "Brown",
         email: "michael.brown@example.com",
         key: "key8",
-        orgId: "org8",
-        profileImage: "https://example.com/profile8.jpg"
+        orgId: "org1",
+        profileImage: "https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais"
     },
 ];
-
-// const getColour = (label: string): string => {
-//     switch (label) {
-//         case Labels.Bug: return "bg-cyan-950";
-//         case Labels.Feature: return "bg-purple-600";
-//         case Labels.Urgent: return "bg-red-600";
-//         case Labels.Warning: return "bg-yellow-600";
-//         case Labels.Study: return "bg-green-600";
-//         default: return "bg-green-600";
-//     }
-// };
 
 export const defaultLabels: ILabel[] = [
     { title: Labels.Bug, key: "label1", backGround: "bg-cyan-950", orgId: "org1" },
@@ -116,7 +114,7 @@ export const defaultTasks: ITask[] = [
         created_at: new Date().toString(),
         containerId: "container1",
         labels: ["label1", "label2"],
-        members: ["key1", "key2"],
+        members: ["key1", "key9"],
         serialNumber: 1,
         orgId: "org1"
     },
@@ -126,7 +124,7 @@ export const defaultTasks: ITask[] = [
         created_at: new Date().toString(),
         containerId: "container2",
         labels: ["label2", "label3"],
-        members: ["key2", "key3"],
+        members: ["key10", "key9"],
         serialNumber: 2,
         orgId: "org1"
     },
@@ -136,7 +134,7 @@ export const defaultTasks: ITask[] = [
         created_at: new Date().toString(),
         containerId: "container3",
         labels: ["label4", "label5"],
-        members: ["key4", "key3"],
+        members: ["key9", "key1"],
         serialNumber: 3,
         orgId: "org1"
     },
@@ -146,7 +144,7 @@ export const defaultTasks: ITask[] = [
         created_at: new Date().toString(),
         containerId: "container3",
         labels: ["label4", "label5"],
-        members: ["key4", "key3"],
+        members: ["key9", "key1"],
         serialNumber: 4,
         orgId: "org1"
     },
@@ -156,7 +154,7 @@ export const defaultTasks: ITask[] = [
         created_at: new Date().toString(),
         containerId: "container3",
         labels: ["label4", "label5"],
-        members: ["key4", "key3"],
+        members: ["key1", "key10"],
         serialNumber: 5,
         orgId: "org1"
     }

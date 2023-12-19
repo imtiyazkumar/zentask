@@ -1,7 +1,15 @@
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import React from "react";
 import { IconX, IconZoomIn, IconZoomOut } from "@tabler/icons-react";
 import * as Dialog from "@radix-ui/react-dialog";
-// import AvatarEditor from "react-avatar-editor";
 import { Div, Flex, Span } from "../BaseComponents";
 import Button from "../Button";
 
@@ -18,14 +26,11 @@ interface ProfileImageModalProps {
 }
 
 const ProfileImageModal: React.FC<ProfileImageModalProps> = function ({ isModalOpen, setIsModalOpen, onCrop, uploading, imageRef }) {
-    // const editorRef = React.useRef<AvatarEditor>(null);
     const [scale, setScale] = React.useState(1);
-
     const resetFileInput = () => {
         if (imageRef.current) {
             imageRef.current.value = "";
         }
-
         onCrop(null);
     };
 

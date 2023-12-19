@@ -1,13 +1,12 @@
 /**
- * Project Ouma Health
+ * Zentask
  *
- * @author      Moin Khan
- * @copyright   Teleperinatal, Inc.
- *
- * Built by Eonyx Infotech LLP.
- * @link https://eonyx.io
- *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
  */
+
 
 import React from "react";
 // import { getAuthToken, setAuthToken } from "../services/authService";

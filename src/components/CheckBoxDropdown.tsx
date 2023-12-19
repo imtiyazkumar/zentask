@@ -1,3 +1,12 @@
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import React, { ReactNode } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Div, Flex } from "./BaseComponents";
@@ -32,6 +41,7 @@ interface DropdownProps {
 }
 
 const CheckBoxDropdown: React.FC<DropdownProps> = ({ task, type, label, setTask, orgKey, icon, isOpen, setIsOpen, ...props }) => {
+    console.log("task", task)
     const labels = getLabels(orgKey);
     const members = getMembers(orgKey);
 

@@ -1,4 +1,13 @@
-import React from 'react';
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
+import React, { useRef, useEffect } from 'react';
 import { Flex, FlexColumn, Span } from "../BaseComponents";
 import { cn } from '../helper';
 import { IconAlertCircle, IconEye, IconEyeOff } from '@tabler/icons-react';
@@ -11,6 +20,13 @@ interface InputTextProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const Input: React.FC<InputTextProps> = ({ label = "", error = "", type, required = false, ...props }) => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.selectionStart = inputRef.current.selectionEnd = inputRef.current.value.length;
+        }
+    }, []);
 
     return (
         <FlexColumn className="gap-2.5 w-full">
@@ -19,7 +35,13 @@ const Input: React.FC<InputTextProps> = ({ label = "", error = "", type, require
                 {required && <Span className="text-red-500">*</Span>}
             </Flex>
             <Flex className={cn("flex border bg-white border-border-dark focus-within:border-primary-2 gap-2 p-2 rounded-md", { "border-alerts-error_base": error })}>
-                <input {...props} type={type === "password" ? (isPasswordVisible ? "text" : "password") : type} className="flex-1 w-full font-medium text-neutral-700 focus:outline-none text-14 placeholder-neutral-600" />
+                <input
+                    {...props}
+                    ref={inputRef}
+                    type={type === "password" ? (isPasswordVisible ? "text" : "password") : type}
+                    className="flex-1 w-full font-medium text-neutral-700 focus:outline-none text-14 placeholder-neutral-600"
+                    autoFocus
+                />
                 {type === "password" &&
                     <Span className="cursor-pointer" onClick={() => setIsPasswordVisible(v => !v)}>
                         {isPasswordVisible ? <IconEye size={20} className="text-dark" /> : <IconEyeOff size={20} className="text-dark" />}

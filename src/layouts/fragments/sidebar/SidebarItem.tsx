@@ -1,20 +1,17 @@
 /**
- * Project Ouma Health
+ * Zentask
  *
- * @author      Anees Muzzafer
- * @copyright   Teleperinatal, Inc.
- *
- * Built by Eonyx Infotech LLP.
- * @link https://eonyx.io
- *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
  */
 
+
 import { NavLink } from "react-router-dom";
-// import { Div, Span } from "../../../components/general/BaseComponents";
 import { AppRoutes } from "../../../routes/routes";
 import { Span } from "../../../components/BaseComponents";
 import { routeIcon } from "../../../routes/icons";
-// import { routeIcon } from "../../../routes/icons";
 
 interface SidebarItemProps {
     label: string;

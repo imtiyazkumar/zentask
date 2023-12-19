@@ -1,3 +1,12 @@
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import React, { useEffect, useRef } from 'react';
 import { Flex, FlexColumn, Span } from "../BaseComponents";
 import { cn } from '../helper';

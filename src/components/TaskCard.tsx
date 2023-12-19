@@ -1,3 +1,12 @@
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import React from 'react';
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -7,13 +16,11 @@ import { IconMenu } from "@tabler/icons-react";
 import Dropdown from "./Dropdown";
 import CardEditorModal from './modals/CardEditorModal';
 import ConfirmationModal from './modals/ConfirmationModal';
-// import { getLabelsByKeys, getMembersByKeys } from './DefaultValues';
-
+import { getLabelsByKeys, getMembersByKeys } from './DefaultValues';
 
 const TaskCard = ({ task, orgKey, containerKey, setUpdate }: { task: ITask, containerKey: Id, orgKey: string; setUpdate: React.Dispatch<React.SetStateAction<boolean>>; }) => {
-    // const [task, setTask] = React.useState<ITask>(currentTask || { content: "", labels: [], members: [], containerId: containerKey, serialNumber: 12, created_at: new Date().toString() })
-    // const labels = getLabelsByKeys(task.labels || []);
-    // const members = getMembersByKeys(task.members || [])
+    const labels = getLabelsByKeys(task.labels || []);
+    const members = getMembersByKeys(task.members || [])
     const [isEditModalOpen, setEditIsModalOpen] = React.useState(false);
     const [isDeleteModalOpen, setDeleteIsModalOpen] = React.useState(false);
     const { setNodeRef, attributes, listeners, transform, transition, isDragging, } = useSortable({ id: task.key!, data: { type: "Task", task } });
@@ -22,10 +29,11 @@ const TaskCard = ({ task, orgKey, containerKey, setUpdate }: { task: ITask, cont
     const dateStamp = new Date().toLocaleString(undefined, options);
 
     return (
-        <div ref={setNodeRef} style={style}{...attributes}{...listeners} className={`p-2 bg-orange-200 rounded-md border cursor-grab ${isDragging ? "border-primary z-40" : "border-border-dark"}`} >
+        <div ref={setNodeRef} style={style}{...attributes}{...listeners} className={`p-2 bg-white rounded-md border cursor-grab ${isDragging ? "border-primary z-40" : "border-border-dark"}`} >
             <Flex className="gap-3 pb-1">
-                <Div className="bg-red-500 h-[10px] w-12 rounded-md"></Div>
-                <Div className="bg-green-600 h-[10px] w-12 rounded-md"></Div>
+                {labels.map(label =>
+                    <Div key={label.key} className={`${label.backGround} h-[10px] w-12 rounded-md`}></Div>
+                )}
                 <Div className="w-6 h-6 p-1 ml-auto cursor-pointer">
                     <Dropdown icon={<IconMenu size={15} />} align="end" items={[{ label: "Edit Card", onClick: () => { setEditIsModalOpen(!isEditModalOpen) }, icon: <IconMenu size={15} /> }, { label: "Delete Card", onClick: () => { setDeleteIsModalOpen(!isDeleteModalOpen) }, icon: <IconMenu size={15} /> }]} />
                     <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} task={task} orgKey={orgKey} containerId={containerKey} setUpdate={setUpdate} />
@@ -36,8 +44,9 @@ const TaskCard = ({ task, orgKey, containerKey, setUpdate }: { task: ITask, cont
             <Flex className="items-end gap-2 cursor-default">
                 <Div className="text-10 text-neutral-400">{dateStamp}</Div>
                 <Flex className="gap-2 ml-auto">
-                    <Img className="rounded-full w-[25px] h-[25px]" src="https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais" />
-                    <Img className="rounded-full w-[25px] h-[25px]" src="https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701388800&semt=ais" />
+                    {members.map(member =>
+                        <Img key={member.key} className="rounded-full w-[25px] h-[25px]" src={member.profileImage} />
+                    )}
                 </Flex>
             </Flex>
         </div>

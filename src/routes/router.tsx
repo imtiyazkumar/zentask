@@ -1,7 +1,15 @@
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import { createBrowserRouter } from "react-router-dom";
 import { AuthenticatedRoutes, UnAuthenticatedRoutes } from "../hooks/AuthHooks";
 import { AppRoutes } from "./routes";
-
 import MasterLayout from "../layouts/MasterLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import SignIn from "../views/Auth/SignIn";

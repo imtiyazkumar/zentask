@@ -10,6 +10,7 @@ import { defaultContainers, defaultTasks, getContainerKey, getContainerSerial } 
 const Dashboard: React.FC = () => {
 
     const [update, setUpdate] = React.useState(false);
+    const [editMode, setEditMode] = React.useState(false)
     const [Organization, setOrganization] = React.useState<IOrganization>({ key: "org1", title: "Zantask", manager: "key9" })
     const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 10 } }));
     const [containers, setContainers] = React.useState(defaultContainers.filter(container => container.orgId === Organization.key).sort((container1, container2) => container2.serialNumber - container1.serialNumber))
@@ -61,7 +62,6 @@ const Dashboard: React.FC = () => {
             defaultTasks[activeIndex].containerId = overContainerKey;
         }
         setUpdate(!update)
-
     }
 
     const onDragEnd = (event: DragEndEvent) => {
@@ -86,13 +86,14 @@ const Dashboard: React.FC = () => {
     };
 
     const addContainer = () => {
+        setEditMode(true)
         defaultContainers.push(container);
         setUpdate((u) => !u);
     };
 
     return (
         <DndContext sensors={sensors} onDragStart={onDragStart} onDragEnd={onDragEnd} onDragOver={onDragOver}>
-            <Flex className="items-start gap-4 p-6">
+            <Flex className="items-start gap-4 p-6 overflow-y-auto">
                 <Div className="flex gap-6">
                     <SortableContext items={containerKeys}>
                         {containers.map((col) => (
@@ -102,11 +103,12 @@ const Dashboard: React.FC = () => {
                                 orgTasks={tasks}
                                 orgKey={Organization.key}
                                 setUpdate={setUpdate}
-                                update={update} />
+                                update={update}
+                                editMode={editMode} />
                         ))}
                     </SortableContext>
                 </Div>
-                <Button variant="dark_outlined" className="w-80" onClick={addContainer}> + Add Column</Button>
+                <Button variant="dark_outlined" className="w-80" onClick={addContainer}> + Add Container</Button>
             </Flex>
         </DndContext>
     );

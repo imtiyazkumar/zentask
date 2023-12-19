@@ -1,3 +1,12 @@
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "../../../utils/helper";
 import { Flex, Span } from "../../../components/BaseComponents";

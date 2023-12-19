@@ -1,3 +1,12 @@
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import * as Dialog from "@radix-ui/react-dialog";
 import { Div, Flex, Span } from "../BaseComponents";
 import Button from "../Button";

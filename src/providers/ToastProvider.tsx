@@ -1,6 +1,14 @@
 
+/**
+ * Zentask
+ *
+ * @author      Imtiyaz Ahmad
+ * @link        https://github.com/imtiyazkumar/zentask
+ * @license     MIT
+ * @copyright   2023 Imtiyaz Ahmad
+ */
+
 import { toast, Toaster, ToastBar, Toast as IToast, Renderable, DefaultToastOptions } from "react-hot-toast";
-// import { ReactChildren } from "../../App.d";
 import { IconCircleCheckFilled, IconAlertTriangleFilled, IconX, IconInfoCircleFilled, IconAlertCircleFilled } from "@tabler/icons-react";
 import { Div, Flex } from "../components/BaseComponents";
 import React from "react";
