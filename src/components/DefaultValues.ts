@@ -90,12 +90,23 @@ export const defaultMembers: IUser[] = [
     },
 ];
 
+// const getColour = (label: string): string => {
+//     switch (label) {
+//         case Labels.Bug: return "bg-cyan-950";
+//         case Labels.Feature: return "bg-purple-600";
+//         case Labels.Urgent: return "bg-red-600";
+//         case Labels.Warning: return "bg-yellow-600";
+//         case Labels.Study: return "bg-green-600";
+//         default: return "bg-green-600";
+//     }
+// };
+
 export const defaultLabels: ILabel[] = [
-    { title: Labels.Bug, key: "label1", backGround: "", orgId: "org1" },
-    { title: Labels.Urgent, key: "label2", backGround: "", orgId: "org1" },
-    { title: Labels.Feature, key: "label3", backGround: "", orgId: "org1" },
-    { title: Labels.Warning, key: "label4", backGround: "", orgId: "org1" },
-    { title: Labels.Study, key: "label15", backGround: "", orgId: "org1" },
+    { title: Labels.Bug, key: "label1", backGround: "bg-cyan-950", orgId: "org1" },
+    { title: Labels.Urgent, key: "label2", backGround: "bg-red-600", orgId: "org1" },
+    { title: Labels.Feature, key: "label3", backGround: "bg-purple-600", orgId: "org1" },
+    { title: Labels.Warning, key: "label4", backGround: "bg-yellow-600", orgId: "org1" },
+    { title: Labels.Study, key: "label15", backGround: "bg-green-600", orgId: "org1" },
 ];
 
 export const defaultTasks: ITask[] = [

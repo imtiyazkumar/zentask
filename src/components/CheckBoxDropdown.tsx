@@ -3,7 +3,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Div, Flex } from "./BaseComponents";
 import Checkbox from "./Checkbox";
 import { IconX } from "@tabler/icons-react";
-import { Labels, getLabels, getMembers } from "./DefaultValues";
+import { getLabels, getMembers } from "./DefaultValues";
 import { DropdownType, ITask } from "./types";
 
 export interface IUser {
@@ -63,17 +63,6 @@ const CheckBoxDropdown: React.FC<DropdownProps> = ({ task, type, label, setTask,
             }
             return prev;
         });
-    }
-
-    const getColour = (label: string): string => {
-        switch (label) {
-            case Labels.Bug: return "bg-cyan-950";
-            case Labels.Feature: return "bg-purple-600";
-            case Labels.Urgent: return "bg-red-600";
-            case Labels.Warning: return "bg-yellow-600";
-            case Labels.Study: return "bg-green-600";
-            default: return "bg-green-600";
-        }
     };
 
     return (
@@ -93,7 +82,7 @@ const CheckBoxDropdown: React.FC<DropdownProps> = ({ task, type, label, setTask,
                         <DropdownMenu.Item key={d.key} onClick={() => addMember(d.key)}>
                             <Flex className="gap-3 p-2 rounded-sm cursor-pointer hover:bg-slate-400">
                                 <Div className="w-8 h-8 bg-orange-300 rounded-full"></Div>
-                                <Div className="font-semibold capitalize text-16 text-neutral-700">{d.firstName} {d.firstName}</Div>
+                                <Div className="font-semibold capitalize text-16 text-neutral-700">{d.firstName}</Div>
                                 <Checkbox checked={!!task.members!.includes(d.key)} onChange={() => addMember(d.key)} />
                             </Flex>
                         </DropdownMenu.Item>
@@ -102,7 +91,7 @@ const CheckBoxDropdown: React.FC<DropdownProps> = ({ task, type, label, setTask,
                         <DropdownMenu.Item key={d.key} onClick={() => addLabel(d.key)}>
                             <Flex className="gap-2 p-1 m-2 rounded-sm cursor-pointer hover:bg-slate-400">
                                 <Checkbox checked={!!task.labels!.includes(d.key)} onChange={() => addLabel(d.key)} />
-                                <Flex className={`w-[150px] rounded ${getColour(d.title)} px-2 text-14 select-none text-white`}>{getColour(d.title)}</Flex>
+                                <Flex className={`w-[150px] rounded ${d.backGround} px-2 text-14 select-none text-white capitalize`}>{d.title} </Flex>
                             </Flex>
                         </DropdownMenu.Item>
                     )}</>}
