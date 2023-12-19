@@ -84,8 +84,8 @@ const Dashboard: React.FC = () => {
     };
 
     return (
-        <Flex className="h-full p-5 overflow-x-auto">
-            <DndContext sensors={sensors} onDragStart={onDragStart} onDragEnd={onDragEnd} onDragOver={onDragOver}>
+        <DndContext sensors={sensors} onDragStart={onDragStart} onDragEnd={onDragEnd} onDragOver={onDragOver}>
+            <Flex className="flex-1 h-full p-5 overflow-x-auto">
                 <Div className="flex gap-4 m-auto">
                     <Div className="flex gap-4">
                         <SortableContext items={containerKeys}>
@@ -102,8 +102,8 @@ const Dashboard: React.FC = () => {
                     </Div>
                     <Button variant="dark_outlined" onClick={() => {}}> + Add Column</Button>
                 </Div>
-            </DndContext>
-        </Flex>
+            </Flex>
+        </DndContext>
     );
 }
 

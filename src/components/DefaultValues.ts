@@ -207,5 +207,5 @@ export const getMembersByKeys = (keysToFilter: Array<string>) => {
 };
 
 export const getTaskKey = () => {
-    return defaultTasks.length + 100;
+    return defaultTasks.length + 1;
 }

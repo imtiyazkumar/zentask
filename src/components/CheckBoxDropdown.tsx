@@ -27,13 +27,13 @@ interface DropdownProps {
     icon?: ReactNode;
     label: string;
     isOpen: boolean;
-    setTask: React.Dispatch<React.SetStateAction<ITask>>
+    setTask: React.Dispatch<React.SetStateAction<ITask | null>>
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CheckBoxDropdown: React.FC<DropdownProps> = ({ task, type, label, setTask, orgKey, icon, isOpen, setIsOpen, ...props }) => {
     const labels = getLabels(orgKey);
-    const members = getMembers(orgKey)
+    const members = getMembers(orgKey);
 
     const addMember = (memberId: string) => {
         setTask((prev) => {
@@ -49,7 +49,6 @@ const CheckBoxDropdown: React.FC<DropdownProps> = ({ task, type, label, setTask,
             return prev;
         });
     };
-
 
     const addLabel = (labelId: string) => {
         setTask((prev) => {

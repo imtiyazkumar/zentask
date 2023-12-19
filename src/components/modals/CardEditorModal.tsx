@@ -11,7 +11,7 @@ import { defaultTasks } from "../DefaultValues";
 interface CardEditorProps {
     task: ITask;
     orgKey: string
-    setTask: React.Dispatch<React.SetStateAction<ITask>>;
+    setTask: React.Dispatch<React.SetStateAction<ITask | null>>;
     isModalOpen: boolean;
     isAdding?: boolean;
     setIsModalOpen: (isModalOpen: boolean) => void;
@@ -25,17 +25,15 @@ const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen
         if (isAdding) {
             defaultTasks.push({ ...task, content: text });
             setUpdate!(!update);
-            setTask((prevTask) => {
-                return { ...prevTask, content: "", members: [], labels: [] };
-            });
+            setTask(null);
         }
         setTask((prevTask) => {
-            return { ...prevTask, content: text };
+            return { ...prevTask!, content: text };
         });
         setIsModalOpen(false)
-    }
-    const [isOpen, setIsOpen] = React.useState(false);
+    };
 
+    const [isOpen, setIsOpen] = React.useState(false);
     const [text, setText] = React.useState(task.content);
     const [isOpenLabel, setIsOpenLabel] = React.useState(false);
 
