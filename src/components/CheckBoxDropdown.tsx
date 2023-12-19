@@ -27,7 +27,7 @@ interface DropdownProps {
     icon?: ReactNode;
     label: string;
     isOpen: boolean;
-    setTask: React.Dispatch<React.SetStateAction<ITask | null>>
+    setTask: React.Dispatch<React.SetStateAction<ITask>>
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

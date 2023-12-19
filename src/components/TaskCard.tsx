@@ -10,8 +10,8 @@ import ConfirmationModal from './modals/ConfirmationModal';
 // import { getLabelsByKeys, getMembersByKeys } from './DefaultValues';
 
 
-const TaskCard = ({ currentTask, containerKey, orgKey }: { currentTask: ITask, containerKey: Id, orgKey: string; }) => {
-    const [task, setTask] = React.useState<ITask>(currentTask || { content: "", labels: [], members: [], containerId: containerKey, serialNumber: 12, created_at: new Date().toString() })
+const TaskCard = ({ task, orgKey, containerKey, setUpdate }: { task: ITask, containerKey: Id, orgKey: string; setUpdate: React.Dispatch<React.SetStateAction<boolean>>; }) => {
+    // const [task, setTask] = React.useState<ITask>(currentTask || { content: "", labels: [], members: [], containerId: containerKey, serialNumber: 12, created_at: new Date().toString() })
     // const labels = getLabelsByKeys(task.labels || []);
     // const members = getMembersByKeys(task.members || [])
     const [isEditModalOpen, setEditIsModalOpen] = React.useState(false);
@@ -28,7 +28,7 @@ const TaskCard = ({ currentTask, containerKey, orgKey }: { currentTask: ITask, c
                 <Div className="bg-green-600 h-[10px] w-12 rounded-md"></Div>
                 <Div className="w-6 h-6 p-1 ml-auto cursor-pointer">
                     <Dropdown icon={<IconMenu size={15} />} align="end" items={[{ label: "Edit Card", onClick: () => { setEditIsModalOpen(!isEditModalOpen) }, icon: <IconMenu size={15} /> }, { label: "Delete Card", onClick: () => { setDeleteIsModalOpen(!isDeleteModalOpen) }, icon: <IconMenu size={15} /> }]} />
-                    <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} task={task} setTask={setTask} orgKey={orgKey} />
+                    <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} task={task} orgKey={orgKey} containerId={containerKey} setUpdate={setUpdate} />
                     <ConfirmationModal isModalOpen={isDeleteModalOpen} setIsModalOpen={setDeleteIsModalOpen} onCancel={() => console.log("delete")} onAction={() => console.log("delete")} />
                 </Div>
             </Flex>

@@ -43,7 +43,8 @@ const Dashboard: React.FC = () => {
         const isOverATask = over.data.current?.type === "Task";
         if (isActiveATask && isOverATask) {
             const activeTaskKey = event.active.data.current?.task.key;
-            const overTaskKey = event.over?.data.current?.task.key; const activeIndex = defaultTasks.findIndex(Task => Task.key === activeTaskKey);
+            const overTaskKey = event.over?.data.current?.task.key;
+            const activeIndex = defaultTasks.findIndex(Task => Task.key === activeTaskKey);
             const overIndex = defaultTasks.findIndex(Task => Task.key === overTaskKey);
             if (activeIndex !== -1 && overIndex !== -1) {
                 const tempSerial = defaultTasks[activeIndex].serialNumber;
@@ -85,23 +86,21 @@ const Dashboard: React.FC = () => {
 
     return (
         <DndContext sensors={sensors} onDragStart={onDragStart} onDragEnd={onDragEnd} onDragOver={onDragOver}>
-            <Flex className="flex-1 h-full p-5 overflow-x-auto">
-                <Div className="flex gap-4 m-auto">
-                    <Div className="flex gap-4">
-                        <SortableContext items={containerKeys}>
-                            {containers.map((col) => (
-                                <ColumnContainer
-                                    key={col.key}
-                                    container={col}
-                                    orgTasks={tasks}
-                                    orgKey={Organization.key}
-                                    setUpdate={setUpdate}
-                                    update={update} />
-                            ))}
-                        </SortableContext>
-                    </Div>
-                    <Button variant="dark_outlined" onClick={() => {}}> + Add Column</Button>
+            <Flex className="items-start gap-4 p-6">
+                <Div className="flex gap-6">
+                    <SortableContext items={containerKeys}>
+                        {containers.map((col) => (
+                            <ColumnContainer
+                                key={col.key}
+                                container={col}
+                                orgTasks={tasks}
+                                orgKey={Organization.key}
+                                setUpdate={setUpdate}
+                                update={update} />
+                        ))}
+                    </SortableContext>
                 </Div>
+                <Button variant="dark_outlined" className="w-80" onClick={() => {}}> + Add Column</Button>
             </Flex>
         </DndContext>
     );

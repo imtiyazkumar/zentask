@@ -5,37 +5,39 @@ import { IconHeart, IconX } from "@tabler/icons-react";
 import TextArea from "./TextArea";
 import CheckBoxDropdown from "../CheckBoxDropdown";
 import Button from "../Button";
-import { DropdownType, ITask } from "../types";
-import { defaultTasks } from "../DefaultValues";
+import { DropdownType, ITask, Id } from "../types";
+import { defaultTasks, getTaskKey, getTaskSerial } from "../DefaultValues";
 
 interface CardEditorProps {
-    task: ITask;
+    task?: ITask;
     orgKey: string
-    setTask: React.Dispatch<React.SetStateAction<ITask | null>>;
     isModalOpen: boolean;
-    isAdding?: boolean;
-    setIsModalOpen: (isModalOpen: boolean) => void;
-    update?: boolean;
-    setUpdate?: React.Dispatch<React.SetStateAction<boolean>>;
+    containerId: Id;
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen, setIsModalOpen, orgKey, isAdding, setUpdate, update }) => {
+const CardEditorModal: React.FC<CardEditorProps> = ({ task, isModalOpen, setIsModalOpen, orgKey, containerId, setUpdate }) => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpenLabel, setIsOpenLabel] = React.useState(false);
+
+    const [thisTask, setThisTask] = React.useState<ITask>({ containerId: task?.containerId || containerId, content: task?.content || "", key: task?.key || getTaskKey(), orgId: task?.orgId || orgKey, serialNumber: task?.serialNumber || getTaskSerial(), created_at: task?.created_at || new Date().toString(), labels: task?.labels || [], members: task?.members || [] });
 
     const onSave = () => {
-        if (isAdding) {
-            defaultTasks.push({ ...task, content: text });
-            setUpdate!(!update);
-            setTask(null);
+        if (!thisTask.content.length) { alert("Content can't be empty"); return; }
+        if (!task) {
+            defaultTasks.push(thisTask);
+            setUpdate((u) => !u);
+            setThisTask({ containerId: containerId, content: "", key: getTaskKey(), orgId: orgKey, serialNumber: getTaskSerial(), created_at: new Date().toString(), labels: [], members: [] });
         }
-        setTask((prevTask) => {
-            return { ...prevTask!, content: text };
-        });
+        else {
+            const activeIndex = task ? defaultTasks.findIndex(Task => Task.key === thisTask.key) : defaultTasks.length + 1;
+            defaultTasks[activeIndex] = (thisTask);
+            setUpdate((u) => !u);
+            setThisTask({ containerId: containerId, content: "", key: getTaskKey(), orgId: orgKey, serialNumber: getTaskSerial(), created_at: new Date().toString(), labels: [], members: [] });
+        }
         setIsModalOpen(false)
     };
-
-    const [isOpen, setIsOpen] = React.useState(false);
-    const [text, setText] = React.useState(task.content);
-    const [isOpenLabel, setIsOpenLabel] = React.useState(false);
 
     return (
         <Dialog.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -52,12 +54,12 @@ const CardEditorModal: React.FC<CardEditorProps> = ({ task, setTask, isModalOpen
                         <FlexColumn className="w-2/3">
                             <Div className="py-2 font-medium text-14 text-neutral-700">Task Description</Div>
                             <Div>
-                                <TextArea setText={setText} text={text} ></TextArea>
+                                <TextArea setText={setThisTask} task={thisTask} ></TextArea>
                             </Div>
                         </FlexColumn>
                         <FlexColumn className="self-start gap-4 pt-10">
-                            <CheckBoxDropdown task={task} isOpen={isOpen} setIsOpen={setIsOpen} label="Members" icon={<IconHeart size={14} />} type={DropdownType.Members} setTask={setTask} orgKey={orgKey} />
-                            <CheckBoxDropdown task={task} isOpen={isOpenLabel} setIsOpen={setIsOpenLabel} label="Labels" icon={<IconHeart size={14} />} type={DropdownType.Labels} setTask={setTask} orgKey={orgKey} />
+                            <CheckBoxDropdown task={thisTask} isOpen={isOpen} setIsOpen={setIsOpen} label="Members" icon={<IconHeart size={14} />} type={DropdownType.Members} setTask={setThisTask} orgKey={orgKey} />
+                            <CheckBoxDropdown task={thisTask} isOpen={isOpenLabel} setIsOpen={setIsOpenLabel} label="Labels" icon={<IconHeart size={14} />} type={DropdownType.Labels} setTask={setThisTask} orgKey={orgKey} />
                             <Button variant="primary_filled" onClick={onSave}>Save</Button>
                         </FlexColumn>
                     </Flex>

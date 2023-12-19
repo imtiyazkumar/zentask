@@ -28,7 +28,7 @@ const MasterLayout: React.FC = () => {
             </Div>
             <Div className={`${isSidebarExpanded ? "ml-[220px]" : ""}`}>
                 <Topbar onMenuClick={() => setIsSidebarExpanded(v => !v)} />
-                <Div className="min-h-[calc(100vh-128px)] ">
+                <Div className="min-h-[calc(100vh-150px)]">
                     <Outlet />
                 </Div>
                 <Footer />

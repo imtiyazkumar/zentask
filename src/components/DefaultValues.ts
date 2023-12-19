@@ -207,5 +207,15 @@ export const getMembersByKeys = (keysToFilter: Array<string>) => {
 };
 
 export const getTaskKey = () => {
-    return defaultTasks.length + 1;
+    return "task" + defaultTasks.length + 2;
+}
+export const getTaskSerial = () => {
+    return defaultTasks.length + 2;
+}
+
+export const getContainerKey = () => {
+    return "container" + defaultContainers.length + 2;
+}
+export const getContainerSerial = () => {
+    return defaultContainers.length + 2;
 }
