@@ -10,7 +10,7 @@
 
 import { toast, Toaster, ToastBar, Toast as IToast, Renderable, DefaultToastOptions } from "react-hot-toast";
 import { IconCircleCheckFilled, IconAlertTriangleFilled, IconX, IconInfoCircleFilled, IconAlertCircleFilled } from "@tabler/icons-react";
-import { Div, Flex } from "../components/BaseComponents";
+import { Div, Flex } from "../components/General Components/BaseComponents";
 import React from "react";
 import { ReactChildren } from "../App.d";
 

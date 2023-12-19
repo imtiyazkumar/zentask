@@ -8,8 +8,8 @@
  */
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { Div, Flex, Span } from "../BaseComponents";
-import Button from "../Button";
+import { Div, Flex, Span } from "../General Components/BaseComponents";
+import Button from "../General Components/Button";
 import { IconX } from "@tabler/icons-react";
 
 interface ConfirmationModalProps {

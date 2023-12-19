@@ -8,7 +8,7 @@
  */
 
 import React, { useEffect, useRef } from 'react';
-import { Flex, FlexColumn, Span } from "../BaseComponents";
+import { Flex, FlexColumn, Span } from "./BaseComponents";
 import { cn } from '../helper';
 import { IconAlertCircle } from '@tabler/icons-react';
 import { ITask } from '../types';

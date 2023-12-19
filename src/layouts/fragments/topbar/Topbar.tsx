@@ -8,7 +8,7 @@
  */
 
 import { IconMenu2 } from "@tabler/icons-react";
-import { Div, Flex } from "../../../components/BaseComponents";
+import { Div, Flex } from "../../../components/General Components/BaseComponents";
 
 interface TopbarProps {
     onMenuClick: () => void;

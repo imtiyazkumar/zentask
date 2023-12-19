@@ -10,8 +10,8 @@
 import React from "react";
 import { IconX, IconZoomIn, IconZoomOut } from "@tabler/icons-react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Div, Flex, Span } from "../BaseComponents";
-import Button from "../Button";
+import { Div, Flex, Span } from "../General Components/BaseComponents";
+import Button from "../General Components/Button";
 
 const SCALE_MIN = 0.8;
 const SCALE_MAX = 4.0;

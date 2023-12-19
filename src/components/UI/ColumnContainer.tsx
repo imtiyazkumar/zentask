@@ -11,14 +11,14 @@ import React from "react";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import TaskCard from "./TaskCard";
-import { IContainer, ITask, Id } from "./types";
-import { Div, Flex, FlexColumn } from "./BaseComponents";
+import { IContainer, ITask, Id } from "../types";
+import { Div, Flex, FlexColumn } from "../General Components/BaseComponents";
 import { IconMenu } from "@tabler/icons-react";
-import CardEditorModal from "./modals/CardEditorModal";
-import Button from "./Button";
-import Input from "./modals/Input";
-import { defaultContainers } from "./DefaultValues";
-import Dropdown from "./Dropdown";
+import CardEditorModal from "../Modals/CardEditorModal";
+import Button from "../General Components/Button";
+import Input from "../General Components/Input";
+import { defaultContainers } from "../DefaultValues";
+import Dropdown from "../Dropdown and Checkbox/Dropdown";
 
 interface ContainerProps {
     container: IContainer;
@@ -45,8 +45,8 @@ const ColumnContainer: React.FC<ContainerProps> = ({ orgTasks, container, orgKey
 
     return (
 
-        <FlexColumn className={`w-80 border h-[calc(100vh-190px)] overflow-y-auto gap-2 ${!isDragging ? "border-border-dark" : "border-primary"} rounded-xl p-4 bg-neutral-100`}>
-            <div ref={setNodeRef} style={style} className="h-[calc(100vh-190px)] overflow-y-auto" >
+        <FlexColumn className={`w-80 border h-[calc(100vh-190px)] gap-2 ${!isDragging ? "border-border-dark" : "border-primary"} rounded-xl bg-neutral-100`}>
+            <div ref={setNodeRef} style={style} className="h-[calc(100vh-190px)] overflow-y-scroll p-4" >
                 {e ?
                     <Flex className="items-end gap-2 ">
                         <Input value={currentContainer.title} onChange={(e) => { setCurrentContainer({ ...currentContainer, title: e.target.value }) }}></Input>

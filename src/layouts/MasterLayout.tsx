@@ -12,7 +12,7 @@ import { Outlet } from "react-router-dom";
 import Topbar from "./fragments/topbar/Topbar";
 import Footer from "./fragments/footer/Footer";
 import Sidebar from "./fragments/sidebar/Sidebar";
-import { Div } from "../components/BaseComponents";
+import { Div } from "../components/General Components/BaseComponents";
 
 const MasterLayout: React.FC = () => {
     const [isSidebarExpanded, setIsSidebarExpanded] = React.useState(false);

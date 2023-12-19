@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { cn } from "../../../utils/helper";
 import SidebarItem from "./SidebarItem";
 import { AppRoutes, RouteDefinitions } from "../../../routes/routes";
-import { Flex, FlexColumn, Img } from "../../../components/BaseComponents";
+import { Flex, FlexColumn, Img } from "../../../components/General Components/BaseComponents";
 import logo from "../../../assets/zentask-logo.svg"
 interface SidebarProps {
     className?: string;

@@ -9,7 +9,7 @@
 
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "../../../utils/helper";
-import { Flex, Span } from "../../../components/BaseComponents";
+import { Flex, Span } from "../../../components/General Components/BaseComponents";
 
 interface FooterProps extends React.HTMLProps<HTMLSpanElement>, VariantProps<typeof footerVariants> {}
 

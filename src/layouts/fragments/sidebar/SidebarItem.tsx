@@ -10,7 +10,7 @@
 
 import { NavLink } from "react-router-dom";
 import { AppRoutes } from "../../../routes/routes";
-import { Span } from "../../../components/BaseComponents";
+import { Span } from "../../../components/General Components/BaseComponents";
 import { routeIcon } from "../../../routes/icons";
 
 interface SidebarItemProps {

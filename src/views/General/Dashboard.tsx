@@ -10,9 +10,9 @@
 import React from "react";
 import { DndContext, DragEndEvent, DragOverEvent, DragStartEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext } from "@dnd-kit/sortable";
-import { Div, Flex } from "../../components/BaseComponents";
-import ColumnContainer from "../../components/ColumnContainer";
-import Button from "../../components/Button";
+import { Div, Flex } from "../../components/General Components/BaseComponents";
+import ColumnContainer from "../../components/UI/ColumnContainer";
+import Button from "../../components/General Components/Button";
 import { IContainer, IOrganization } from "../../components/types";
 import { defaultContainers, defaultTasks, getContainerKey, getContainerSerial } from "../../components/DefaultValues";
 

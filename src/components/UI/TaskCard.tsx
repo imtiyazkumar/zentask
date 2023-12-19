@@ -10,13 +10,13 @@
 import React from 'react';
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { ITask, Id } from "./types";
-import { Div, Flex, Img } from "./BaseComponents";
+import { ITask, Id } from "../types";
+import { Div, Flex, Img } from "../General Components/BaseComponents";
 import { IconMenu } from "@tabler/icons-react";
-import Dropdown from "./Dropdown";
-import CardEditorModal from './modals/CardEditorModal';
-import ConfirmationModal from './modals/ConfirmationModal';
-import { getLabelsByKeys, getMembersByKeys } from './DefaultValues';
+import Dropdown from "../Dropdown and Checkbox/Dropdown";
+import CardEditorModal from '../Modals/CardEditorModal';
+import ConfirmationModal from '../Modals/ConfirmationModal';
+import { getLabelsByKeys, getMembersByKeys } from '../DefaultValues';
 
 const TaskCard = ({ task, orgKey, containerKey, setUpdate }: { task: ITask, containerKey: Id, orgKey: string; setUpdate: React.Dispatch<React.SetStateAction<boolean>>; }) => {
     const labels = getLabelsByKeys(task.labels || []);

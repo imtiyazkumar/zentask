@@ -11,7 +11,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "./fragments/footer/Footer";
 import { ReactChildren } from "../App.d";
-import { Div, Flex, FlexColumn } from "../components/BaseComponents";
+import { Div, Flex, FlexColumn } from "../components/General Components/BaseComponents";
 
 const AuthLayout: React.FC<ReactChildren> = ({ children }) => {
     return (

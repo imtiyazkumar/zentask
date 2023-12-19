@@ -11,7 +11,7 @@ import React from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { IconChevronDown } from "@tabler/icons-react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { cn } from "./helper";
+import { cn } from "../helper";
 
 interface DropdownProps extends VariantProps<typeof dropdownVariants> {
     items: Array<{

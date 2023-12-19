@@ -8,7 +8,7 @@
  */
 
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "./helper";
+import { cn } from "../helper";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
     loading?: boolean;
 }

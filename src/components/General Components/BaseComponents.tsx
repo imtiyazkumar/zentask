@@ -7,7 +7,7 @@
  * @copyright   2023 Imtiyaz Ahmad
  */
 
-import { cn } from './../utils/helper';
+import { cn } from '../../utils/helper';
 
 interface DivProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 interface SpanProps extends React.HTMLAttributes<HTMLSpanElement> {}

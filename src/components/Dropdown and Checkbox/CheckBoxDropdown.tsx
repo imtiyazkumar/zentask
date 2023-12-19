@@ -9,11 +9,11 @@
 
 import React, { ReactNode } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { Div, Flex } from "./BaseComponents";
+import { Div, Flex } from "../General Components/BaseComponents";
 import Checkbox from "./Checkbox";
 import { IconX } from "@tabler/icons-react";
-import { getLabels, getMembers } from "./DefaultValues";
-import { DropdownType, ITask } from "./types";
+import { getLabels, getMembers } from "../DefaultValues";
+import { DropdownType, ITask } from "../types";
 
 export interface IUser {
     key: string;
@@ -41,7 +41,6 @@ interface DropdownProps {
 }
 
 const CheckBoxDropdown: React.FC<DropdownProps> = ({ task, type, label, setTask, orgKey, icon, isOpen, setIsOpen, ...props }) => {
-    console.log("task", task)
     const labels = getLabels(orgKey);
     const members = getMembers(orgKey);
 

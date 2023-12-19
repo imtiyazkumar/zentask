@@ -10,7 +10,7 @@
 import React from "react";
 import { IconSquare, IconSquareCheckFilled } from "@tabler/icons-react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { Flex } from "./BaseComponents";
+import { Flex } from "../General Components/BaseComponents";
 
 interface CheckboxProps {
     checked: boolean;

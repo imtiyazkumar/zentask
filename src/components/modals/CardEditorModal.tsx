@@ -9,11 +9,11 @@
 
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Div, Flex, FlexColumn, Span } from "../BaseComponents";
+import { Div, Flex, FlexColumn, Span } from "../General Components/BaseComponents";
 import { IconHeart, IconX } from "@tabler/icons-react";
-import TextArea from "./TextArea";
-import CheckBoxDropdown from "../CheckBoxDropdown";
-import Button from "../Button";
+import TextArea from "../General Components/TextArea";
+import CheckBoxDropdown from "../Dropdown and Checkbox/CheckBoxDropdown";
+import Button from "../General Components/Button";
 import { DropdownType, ITask, Id } from "../types";
 import { defaultTasks, getTaskKey, getTaskSerial } from "../DefaultValues";
 
