@@ -1,27 +1,51 @@
-# React + TypeScript + Vite
+# Zentask
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Zentask is a Trello-like task management app that allows users to organize their work in a hierarchical structure, including organizations, containers, tasks, labels, and members.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Organizations:**
+  - Create and manage organizations for collaborative work.
+  - Each organization serves as a workspace for related tasks.
 
-## Expanding the ESLint configuration
+- **Containers:**
+  - Within organizations, create containers to group tasks based on different projects or categories.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Tasks:**
+  - Create and manage tasks within containers.
+  - Each task can have various attributes, including due dates, descriptions, and attachments.
 
-- Configure the top-level `parserOptions` property like this:
+- **Labels:**
+  - Assign labels to tasks for easy categorization and identification.
+  - Labels help users quickly understand the nature or priority of a task.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- **Members:**
+  - Collaborate with team members by adding them to organizations and tasks.
+  - Track individual contributions and responsibilities.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Getting Started
+
+To get started with Zentask, follow these steps:
+
+1. **Clone the Repository:**
+   ```bash
+   git clone github.com/imtiyazkumar/zentask.git
+   cd zentask
+
+# Install Dependencies:
+yarn install
+
+# Run the App:
+yarn dev
+
+# License
+This project is licensed under the MIT License.
+
+# Contributions 
+Zentask welcomes contributions from the community! Whether you want to report a bug, suggest a feature, or submit code changes, your input is highly appreciated.
+
+1. Bug Reports
+
+2. Feature Requests
+
+
