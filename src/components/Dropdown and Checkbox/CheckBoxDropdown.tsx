@@ -9,7 +9,7 @@
 
 import React, { ReactNode } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { Div, Flex } from "../General Components/BaseComponents";
+import { Div, Flex, Img } from "../General Components/BaseComponents";
 import Checkbox from "./Checkbox";
 import { IconX } from "@tabler/icons-react";
 import { getLabels, getMembers } from "../DefaultValues";
@@ -90,7 +90,7 @@ const CheckBoxDropdown: React.FC<DropdownProps> = ({ task, type, label, setTask,
                     {type === DropdownType.Members && <>{members?.map(d =>
                         <DropdownMenu.Item key={d.key} onClick={() => addMember(d.key)}>
                             <Flex className="gap-3 p-2 rounded-sm cursor-pointer hover:bg-slate-400">
-                                <Div className="w-8 h-8 bg-orange-300 rounded-full"></Div>
+                                <Img className="rounded-full w-[25px] h-[25px]" src={d.profileImage} />
                                 <Div className="font-semibold capitalize text-16 text-neutral-700">{d.firstName}</Div>
                                 <Checkbox checked={!!task.members!.includes(d.key)} onChange={() => addMember(d.key)} />
                             </Flex>
