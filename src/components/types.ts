@@ -20,7 +20,7 @@ export interface ITask {
     orgId: string,
     key: Id;
     content: string;
-    created_at?: string;
+    created_at: Date;
     containerId: Id;
     labels?: Array<string>;
     members?: Array<string>;

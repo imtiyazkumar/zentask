@@ -27,17 +27,19 @@ interface CardEditorProps {
 }
 
 const CardEditorModal: React.FC<CardEditorProps> = ({ task, isModalOpen, setIsModalOpen, orgKey, containerId, setUpdate }) => {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true };
     const [isOpen, setIsOpen] = React.useState(false);
     const [isOpenLabel, setIsOpenLabel] = React.useState(false);
 
-    const [thisTask, setThisTask] = React.useState<ITask>({ containerId: task?.containerId || containerId, content: task?.content || "", key: task?.key || getTaskKey(), orgId: task?.orgId || orgKey, serialNumber: task?.serialNumber || getTaskSerial(), created_at: task?.created_at || new Date().toString(), labels: task?.labels || [], members: task?.members || [] });
+    const [thisTask, setThisTask] = React.useState<ITask>({ containerId: task?.containerId || containerId, content: task?.content || "", key: task?.key || getTaskKey(), orgId: task?.orgId || orgKey, serialNumber: task?.serialNumber || getTaskSerial(), created_at: task?.created_at || new Date(), labels: task?.labels || [], members: task?.members || [] });
 
     const onSave = () => {
         if (!thisTask.content.length) { alert("Content can't be empty"); return; }
         if (!task) {
+            console.log("thisTask", new Date().toLocaleString(undefined, options))
             defaultTasks.push(thisTask);
             setUpdate((u) => !u);
-            setThisTask({ containerId: containerId, content: "", key: getTaskKey(), orgId: orgKey, serialNumber: getTaskSerial(), created_at: new Date().toString(), labels: [], members: [] });
+            setThisTask({ containerId: containerId, content: "", key: getTaskKey(), orgId: orgKey, serialNumber: getTaskSerial(), created_at: new Date(), labels: [], members: [] });
         }
         else {
             const activeIndex = task ? defaultTasks.findIndex(Task => Task.key === thisTask.key) : defaultTasks.length + 1;

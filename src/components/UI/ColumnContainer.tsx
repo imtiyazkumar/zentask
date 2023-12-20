@@ -12,7 +12,7 @@ import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import TaskCard from "./TaskCard";
 import { IContainer, ITask, Id } from "../types";
-import { Div, Flex, FlexColumn } from "../General Components/BaseComponents";
+import { Div, Flex } from "../General Components/BaseComponents";
 import { IconMenu } from "@tabler/icons-react";
 import CardEditorModal from "../Modals/CardEditorModal";
 import Button from "../General Components/Button";
@@ -45,8 +45,8 @@ const ColumnContainer: React.FC<ContainerProps> = ({ orgTasks, container, orgKey
 
     return (
 
-        <FlexColumn className={`w-80 border h-[calc(100vh-190px)] gap-2 ${!isDragging ? "border-border-dark" : "border-primary"} rounded-xl bg-neutral-100`}>
-            <div ref={setNodeRef} style={style} className="h-[calc(100vh-190px)] overflow-y-scroll p-4" >
+        <div ref={setNodeRef} style={style} className={`w-80 flex flex-col border h-[calc(100vh-190px)] gap-2 ${!isDragging ? "border-border-dark" : "border-primary"} rounded-xl bg-neutral-100`}>
+            <div className="h-[calc(100vh-190px)] overflow-y-scroll p-4" >
                 {e ?
                     <Flex className="items-end gap-2 ">
                         <Input value={currentContainer.title} onChange={(e) => { setCurrentContainer({ ...currentContainer, title: e.target.value }) }}></Input>
@@ -65,7 +65,7 @@ const ColumnContainer: React.FC<ContainerProps> = ({ orgTasks, container, orgKey
                 <CardEditorModal isModalOpen={isEditModalOpen} setIsModalOpen={setEditIsModalOpen} orgKey={orgKey} setUpdate={setUpdate} containerId={container.key} />
             </div>
             <Button variant="dark_outlined" onClick={() => { setEditIsModalOpen(true); setCurrentContainer(container) }}>Add task </Button>
-        </FlexColumn>
+        </div>
     );
 }
 

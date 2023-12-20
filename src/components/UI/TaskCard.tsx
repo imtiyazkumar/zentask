@@ -17,6 +17,7 @@ import Dropdown from "../Dropdown and Checkbox/Dropdown";
 import CardEditorModal from '../Modals/CardEditorModal';
 import ConfirmationModal from '../Modals/ConfirmationModal';
 import { getLabelsByKeys, getMembersByKeys } from '../DefaultValues';
+import { options } from '../helper';
 
 const TaskCard = ({ task, orgKey, containerKey, setUpdate }: { task: ITask, containerKey: Id, orgKey: string; setUpdate: React.Dispatch<React.SetStateAction<boolean>>; }) => {
     const labels = getLabelsByKeys(task.labels || []);
@@ -25,8 +26,6 @@ const TaskCard = ({ task, orgKey, containerKey, setUpdate }: { task: ITask, cont
     const [isDeleteModalOpen, setDeleteIsModalOpen] = React.useState(false);
     const { setNodeRef, attributes, listeners, transform, transition, isDragging, } = useSortable({ id: task.key!, data: { type: "Task", task } });
     const style = { transition, transform: CSS.Transform.toString(transform) };
-    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true };
-    const dateStamp = new Date().toLocaleString(undefined, options);
 
     return (
         <div ref={setNodeRef} style={style}{...attributes}{...listeners} className={`p-2 bg-white rounded-md border cursor-grab ${isDragging ? "border-primary z-40" : "border-border-dark"}`} >
@@ -42,7 +41,7 @@ const TaskCard = ({ task, orgKey, containerKey, setUpdate }: { task: ITask, cont
             </Flex>
             <Div className="py-1 text-justify text-14">{task.content}</Div>
             <Flex className="items-end gap-2 cursor-default">
-                <Div className="text-10 text-neutral-400">{dateStamp}</Div>
+                <Div className="text-10 text-neutral-400">{task.created_at.toLocaleString(undefined, options)}</Div>
                 <Flex className="gap-2 ml-auto">
                     {members.map(member =>
                         <Img key={member.key} className="rounded-full w-[25px] h-[25px]" src={member.profileImage} />

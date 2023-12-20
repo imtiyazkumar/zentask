@@ -111,7 +111,7 @@ export const defaultTasks: ITask[] = [
     {
         key: "task1",
         content: "Implement user authentication and authorization 1",
-        created_at: new Date().toString(),
+        created_at: new Date(),
         containerId: "container1",
         labels: ["label1", "label2"],
         members: ["key1", "key9"],
@@ -121,17 +121,17 @@ export const defaultTasks: ITask[] = [
     {
         key: "task2",
         content: "Create API endpoints for data retrieval 2",
-        created_at: new Date().toString(),
+        created_at: new Date(),
         containerId: "container2",
         labels: ["label2", "label3"],
         members: ["key10", "key9"],
         serialNumber: 2,
-        orgId: "org1"
+        orgId: "org1",
     },
     {
         key: "task3",
         content: "Optimize database queries for better performance 3",
-        created_at: new Date().toString(),
+        created_at: new Date(),
         containerId: "container3",
         labels: ["label4", "label5"],
         members: ["key9", "key1"],
@@ -141,7 +141,7 @@ export const defaultTasks: ITask[] = [
     {
         key: "task4",
         content: "these are contents of task with task key 4",
-        created_at: new Date().toString(),
+        created_at: new Date(),
         containerId: "container3",
         labels: ["label4", "label5"],
         members: ["key9", "key1"],
@@ -151,7 +151,7 @@ export const defaultTasks: ITask[] = [
     {
         key: "task5",
         content: "these are contents of task with task key 5",
-        created_at: new Date().toString(),
+        created_at: new Date(),
         containerId: "container3",
         labels: ["label4", "label5"],
         members: ["key1", "key10"],
