@@ -54,7 +54,7 @@ const CardEditorModal: React.FC<CardEditorProps> = ({ task, isModalOpen, setIsMo
         <Dialog.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
             <Dialog.Portal>
                 <Dialog.Overlay className="bg-black bg-opacity-50 data-[state=open]:animate-overlayShow fixed inset-0" />
-                <Dialog.Content className="flex p-4 flex-col data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-2xl bg-white w-[550px] ">
+                <Dialog.Content className="flex p-4 overflow-x-auto flex-col data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-2xl bg-white w-[400px] md:w-[550px] ">
                     <Dialog.Title className="flex items-center justify-between pb-2 border-b border-border-dark">
                         <Span className="font-bold select-none text-16 text-neutral-700">Manage Task</Span>
                         <Span className="w-6 h-6 cursor-pointer" onClick={() => setIsModalOpen(!isModalOpen)}>
