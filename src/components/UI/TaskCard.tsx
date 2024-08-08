@@ -14,8 +14,8 @@ import { ITask, Id } from "../types";
 import { Div, Flex, Img } from "../General Components/BaseComponents";
 import { IconMenu } from "@tabler/icons-react";
 import Dropdown from "../Dropdown and Checkbox/Dropdown";
-import CardEditorModal from '../Modals/CardEditorModal';
-import ConfirmationModal from '../Modals/ConfirmationModal';
+import CardEditorModal from '../modals/CardEditorModal';
+import ConfirmationModal from '../modals/ConfirmationModal';
 import { getLabelsByKeys, getMembersByKeys } from '../DefaultValues';
 import { options } from '../helper';
 

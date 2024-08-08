@@ -14,7 +14,7 @@ import TaskCard from "./TaskCard";
 import { IContainer, ITask, Id } from "../types";
 import { Div, Flex } from "../General Components/BaseComponents";
 import { IconMenu } from "@tabler/icons-react";
-import CardEditorModal from "../Modals/CardEditorModal";
+import CardEditorModal from "../modals/CardEditorModal";
 import Button from "../General Components/Button";
 import Input from "../General Components/Input";
 import { defaultContainers } from "../DefaultValues";
@@ -37,6 +37,7 @@ const ColumnContainer: React.FC<ContainerProps> = ({ orgTasks, container, orgKey
     const [currentContainer, setCurrentContainer] = React.useState<IContainer>({ key: container?.key || "", title: container?.title || "", orgId: orgKey, serialNumber: container.serialNumber || 78 })
     const { setNodeRef, attributes, listeners, transform, isDragging } = useSortable({ id: container.key, data: { type: "Container", container } });
     const style = { transition: "ease-in-out", transform: CSS.Transform.toString(transform) };
+
     const updateContainer = (key: Id) => {
         const activeIndex = defaultContainers.findIndex(container => container.key === key);
         defaultContainers[activeIndex] = (currentContainer);
@@ -44,7 +45,6 @@ const ColumnContainer: React.FC<ContainerProps> = ({ orgTasks, container, orgKey
     }
 
     return (
-
         <div ref={setNodeRef} style={style} className={`w-80 flex flex-col border h-[calc(100vh-190px)] gap-2 ${!isDragging ? "border-border-dark" : "border-primary"} rounded-xl bg-neutral-100`}>
             <div className="h-[calc(100vh-190px)] overflow-y-scroll p-4" >
                 {e ?
